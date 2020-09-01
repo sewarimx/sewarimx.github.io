@@ -1,8 +1,0 @@
-*.log
-*.todo
-.env
-.tarima
-.DS_Store
-build
-generated
-node_modules
