@@ -1,0 +1,54 @@
+meta(lang='en')
+meta(charset='utf-8')
+meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+meta(name='HandheldFriendly' content='true')
+meta(name='viewport' content='width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no')
+
+link(rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Lato:300|Montserrat')
+
+<!--[if lt IE 9]>
+script(src='//html5shim.googlecode.com/svn/trunk/html5.js')
+script(src='//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js')
+<![endif]-->
+
+if pkg.description
+  meta(name='description' content=pkg.description)
+  meta(property='og:description' content=pkg.description)
+
+if pkg.author && pkg.showProfile === true
+  meta(name='author' content=pkg.author.name)
+  meta(property='og:type' content='profile')
+
+  if pkg.author.name
+    meta(property='og:profile:first_name' content=pkg.author.name.split(' ')[0])
+    meta(property='og:profile:last_name' content=pkg.author.name.split(' ')[1])
+
+  if pkg.author.email
+    meta(property='og:profile:username' content=pkg.author.email.split('@')[0])
+
+  meta(property='og:url' content=pkg.author.url)
+  meta(property='og:image' content=pkg.author.image)
+
+block styles
+  includeTag(src='images.css styles.css sprites/emojis.css')
+
+block meta
+  if title
+    meta(name='og:title' content=title)
+
+block head
+  if title
+    title= title
+
+if UA_TOKEN && env.NODE_ENV === 'production'
+  script.
+    /* eslint-disable */
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '#{UA_TOKEN}', 'auto');
+    ga('send', 'pageview');
+    /* eslint-enable */
+    /* eslint-disable eol-last */

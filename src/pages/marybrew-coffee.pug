@@ -1,0 +1,20 @@
+---
+name: MaryBrew coffee
+description: |
+  Esto es una descripción de varias
+  lineas...
+---
+
+extends ../lib/layouts/default
+
+block head
+  title MaryBrew coffee
+
+block body
+  #it
+    .md-flex
+      picture.v-cover
+        img(src='//placehold.it/420x600')
+      aside
+        h1=name
+        p= description
