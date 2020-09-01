@@ -1,0 +1,328 @@
+@font-face {
+  font-family: Gayathri;
+  font-style: normal;
+  font-weight: 100;
+  src: url('../fonts/gayathri-v2-latin-100.eot');
+  /* IE9 Compat Modes */
+  src: local('Gayathri Thin'), local('Gayathri-Thin'), url('../fonts/gayathri-v2-latin-100.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/gayathri-v2-latin-100.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/gayathri-v2-latin-100.woff') format('woff'), /* Modern Browsers */ url('../fonts/gayathri-v2-latin-100.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/gayathri-v2-latin-100.svg#Gayathri') format('svg');
+  /* Legacy iOS */
+}
+@font-face {
+  font-family: Gayathri;
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/gayathri-v2-latin-regular.eot');
+  /* IE9 Compat Modes */
+  src: local('Gayathri Regular'), local('Gayathri-Regular'), url('../fonts/gayathri-v2-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/gayathri-v2-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/gayathri-v2-latin-regular.woff') format('woff'), /* Modern Browsers */ url('../fonts/gayathri-v2-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/gayathri-v2-latin-regular.svg#Gayathri') format('svg');
+  /* Legacy iOS */
+}
+@font-face {
+  font-family: Gayathri;
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/gayathri-v2-latin-700.eot');
+  /* IE9 Compat Modes */
+  src: local('Gayathri Bold'), local('Gayathri-Bold'), url('../fonts/gayathri-v2-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/gayathri-v2-latin-700.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/gayathri-v2-latin-700.woff') format('woff'), /* Modern Browsers */ url('../fonts/gayathri-v2-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/gayathri-v2-latin-700.svg#Gayathri') format('svg');
+  /* Legacy iOS */
+}
+.CSSgal {
+  position: relative;
+  overflow: hidden;
+  max-width: 960px;
+  height: 420px;
+  margin: 50px auto 0;
+}
+.CSSgal .slider {
+  height: 100%;
+  white-space: nowrap;
+  font-size: 0;
+  transition: 0.8s;
+}
+.CSSgal .slider > * {
+  font-size: 1rem;
+  display: inline-block;
+  white-space: normal;
+  vertical-align: top;
+  height: 100%;
+  width: 100%;
+  background: none 50% no-repeat;
+  background-size: cover;
+}
+.CSSgal .prevNext {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  width: 100%;
+  height: 0;
+}
+.CSSgal .prevNext > div + div {
+  visibility: hidden;
+  /* Hide all but first P/N container */
+}
+.CSSgal .prevNext a {
+  background: #fff;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  /* If you want to place numbers */
+  text-align: center;
+  opacity: 0.7;
+  transition: 0.3s;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 0;
+}
+.CSSgal .prevNext a:hover {
+  opacity: 1;
+}
+.CSSgal .prevNext a + a {
+  left: auto;
+  right: 0;
+}
+.CSSgal .bullets {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+.CSSgal .bullets > a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-decoration: none;
+  text-align: center;
+  background: #ffffff;
+  transition: 0.3s;
+}
+.CSSgal .bullets > a + a {
+  background: rgba(255, 255, 255, 0.5);
+}
+.CSSgal .bullets > a:hover {
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+.CSSgal > s:target ~ .bullets > * {
+  background: rgba(255, 255, 255, 0.5);
+}
+#s1:target ~ .bullets > *:nth-child(1) {
+  background: #ffffff;
+}
+#s2:target ~ .bullets > *:nth-child(2) {
+  background: #ffffff;
+}
+#s3:target ~ .bullets > *:nth-child(3) {
+  background: #ffffff;
+}
+#s4:target ~ .bullets > *:nth-child(4) {
+  background: #ffffff;
+}
+.CSSgal > s:target ~ .prevNext > * {
+  visibility: hidden;
+}
+#s1:target ~ .prevNext > *:nth-child(1) {
+  visibility: visible;
+}
+#s2:target ~ .prevNext > *:nth-child(2) {
+  visibility: visible;
+}
+#s3:target ~ .prevNext > *:nth-child(3) {
+  visibility: visible;
+}
+#s4:target ~ .prevNext > *:nth-child(4) {
+  visibility: visible;
+}
+#s1:target ~ .slider {
+  transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+}
+#s2:target ~ .slider {
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+}
+#s3:target ~ .slider {
+  transform: translateX(-200%);
+  -webkit-transform: translateX(-200%);
+}
+#s4:target ~ .slider {
+  transform: translateX(-300%);
+  -webkit-transform: translateX(-300%);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Gayathri;
+}
+a[aria-current] {
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
+}
+a[aria-current]:hover {
+  background-color: black;
+  color: white;
+}
+button,
+.button {
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  border: 0;
+  cursor: pointer;
+}
+button:hover,
+.button:hover {
+  background-color: black;
+  color: white;
+}
+button + button,
+.button + button,
+button + .button,
+.button + .button {
+  margin-left: 10px;
+}
+footer {
+  border-top: 1px solid black;
+  max-width: 720px;
+  margin: 20px auto;
+  text-align: center;
+}
+.f-100 {
+  font-weight: 100;
+}
+.f-400 {
+  font-weight: 400;
+}
+.f-700 {
+  font-weight: 700;
+}
+.small {
+  font-size: 0.9em;
+}
+.normal {
+  font-size: 1em;
+}
+.medium {
+  font-size: 1.3em;
+}
+.bigger {
+  font-size: 1.8em;
+}
+.bigest {
+  font-size: 2.5em;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (min-width: 720px) {
+  .md-flex {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 619px) {
+  .v-cover {
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+  }
+  .v-cover img {
+    width: 100%;
+    height: auto;
+  }
+}
+.icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
+.icon svg {
+  width: inherit;
+  height: inherit;
+}
+.icon + .icon {
+  margin-left: 10px;
+}
+.reset {
+  background-color: inherit;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.debug * {
+  outline: 1px solid pink;
+}
+.overlay {
+  opacity: 0;
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.shadowed {
+  box-shadow: 1px 1px 0 black,
+              2px 2px 0 black,
+              3px 3px 0 black,
+              4px 4px 0 black,
+              5px 5px 0 black;
+}
+.h-cover img {
+  vertical-align: bottom;
+  max-width: 100%;
+  height: auto;
+}
+#menu {
+  background-color: white;
+  max-width: 960px;
+  padding: 10px;
+  margin: auto;
+}
+#menu:hover > ul {
+  display: block;
+}
+#menu ul {
+  border: 1px solid black;
+  position: absolute;
+  display: none;
+  z-index: 1;
+}
+#menu li {
+  padding: 10px;
+}
+#cat {
+  max-width: 800px;
+  margin: 50px auto 0;
+}
+#cat li {
+  margin-top: 10px;
+  position: relative;
+}
+#cat li:hover .overlay {
+  opacity: 1;
+  visibility: visible;
+}
+#it {
+  max-width: 960px;
+  margin: 50px auto 0;
+}
+#it aside {
+  flex: 1 1 auto;
+  margin-left: 44px;
+}
