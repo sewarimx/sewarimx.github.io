@@ -98,6 +98,7 @@
   text-align: center;
   background: #ffffff;
   transition: 0.3s;
+  color: black;
 }
 .slideshow .bullets > a + a {
   background: rgba(255, 255, 255, 0.5);
