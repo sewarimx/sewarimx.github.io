@@ -1,6 +1,5 @@
 (function () {
+
 	console.log(42);
 
 }());
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzIjpbInNyYy9yZXNvdXJjZXMvc2NyaXB0cy90ZXN0LmpzIl0sInNvdXJjZXNDb250ZW50IjpbImNvbnNvbGUubG9nKDQyKTtcbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0NBQUEsT0FBTyxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUM7Ozs7In0=
