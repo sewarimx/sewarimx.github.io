@@ -5,8 +5,7 @@
   },
   "extends": "airbnb-base",
   "plugins": [
-    "svelte3",
-    "pug"
+    "svelte3"
   ],
   "parserOptions": {
     "ecmaVersion": 2019,
