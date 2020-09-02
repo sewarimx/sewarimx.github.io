@@ -4,14 +4,9 @@ block head
   title Homepage
 
 block body
-  +slider('/', 4).home-slider.segment
-    div(style='background:#5b8;')
-      h2 Slide 1
-    div(style='background:#85b;')
-      h2 Slide 2
-    div(style='background:#e95;')
-      h2 Slide 3
-    div(style='background:#e59;')
-      h2 Slide 4
+  +slider('/', 3).home-slider.segment
+    div(style='background-image:url(images/outdoor_white_cup_right.jpg);')
+    div(style='background-image:url(images/outdoor_white_cup_bottom.jpg);')
+    div(style='background-image:url(images/outdoor_white_cup_left.jpg);')
 
   include ../lib/partials/all_products
