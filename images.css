@@ -8,6 +8,10 @@ i[class^="x-"], i[class*=" x-"] {
   display: inline-block;
 }
 
+.x-vietnam_top_front {
+  width: 960px; height: 420px;
+  background-image: url(images/vietnam_top_front.jpg);
+}
 .x-coldbrew_bottle {
   width: 420px; height: 600px;
   background-image: url(images/coldbrew_bottle.jpg);
@@ -35,10 +39,6 @@ i[class^="x-"], i[class*=" x-"] {
 .x-outdoor_white_cup_right {
   width: 960px; height: 420px;
   background-image: url(images/outdoor_white_cup_right.jpg);
-}
-.x-vietnam_top_front {
-  width: 960px; height: 420px;
-  background-image: url(images/vietnam_top_front.jpg);
 }
 
 
