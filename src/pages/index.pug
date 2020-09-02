@@ -4,5 +4,14 @@ block head
   title Homepage
 
 block body
-  include ../lib/partials/slider_widget
+  +slider('/', 4).home-slider
+    div(style='background:#5b8;')
+      h2 Slide 1
+    div(style='background:#85b;')
+      h2 Slide 2
+    div(style='background:#e95;')
+      h2 Slide 3
+    div(style='background:#e59;')
+      h2 Slide 4
+
   include ../lib/partials/all_products

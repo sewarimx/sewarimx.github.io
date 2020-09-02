@@ -3,34 +3,34 @@ include ../mixins/helpers
 doctype html
 html.no-js(lang='en')
   head
-    +baseTag
-
-    include ../partials/head
-
     meta(name='package' content=`${pkg.name} v${pkg.version}`)
     meta(name='revision' content=GIT_REVISION)
+    base(href=(ROOT || '') + '/')
 
+    include ../partials/head
   body
     destFile(src='sprites.svg')
 
     nav#menu
       .flex
-        span
+        span.sub
           span.icon: +iconImage('menu')
+          ul.reset
+            li: +linkFor('/', 'Home')
+            li: +linkFor('/about', 'About')
+            li: +linkFor('/contact', 'Contact')
         span.flex
           a.icon(href='mailto:sewari.mx@gmail' target='_blank'): +iconImage('email')
           a.icon(href='https://facebook.com/sewarimx' target='_blank'): +iconImage('facebook')
           a.icon(href='https://instagram.com/sewari.mx' target='_blank'): +iconImage('instagram')
-        span
+        span.sub
           span.icon: +iconImage('cart')
-      ul.reset
-        li: +linkFor('/', 'Home')
-        li: +linkFor('/about', 'About')
-        li: +linkFor('/contact', 'Contact')
+          ul.reset.at-right
+            li: +linkFor('/checkout', 'Checkout')
 
     block body
 
     footer
-      p Fixme please...
+      p Copyright &copy; #{new Date().getFullYear()} Sewari.mx
 
     block scripts

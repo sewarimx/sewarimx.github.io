@@ -13,17 +13,24 @@ html, body {
 
 body {
   margin: 0;
+  font-weight: 100;
   font-family: Gayathri;
 }
 
-a[aria-current] {
-  text-decoration: underline;
-  font-weight: bold;
+.link {
+  background-color: white;
+  font-weight: 100;
   color: black;
 
   &:hover {
     background-color: black;
     color: white;
+  }
+
+  &[aria-current] {
+    xtext-decoration: underline;
+    font-weight: 700;
+    xcolor: black;
   }
 }
 
@@ -32,9 +39,11 @@ button,
   background-color: white;
   text-decoration: none;
   color: black;
-  padding: 10px;
+  padding: 10px 10px 5px;
   border: 0;
   cursor: pointer;
+  font-weight: 100;
+  font-family: Gayathri;
 
   &:hover {
     background-color: black;
@@ -73,19 +82,6 @@ footer {
   .md-flex {
     display: flex;
     justify-content: space-between;
-  }
-}
-
-@media screen and (max-width: 619px) {
-  .v-cover {
-    height: 320px;
-    overflow: hidden;
-    position: relative;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
   }
 }
 
@@ -144,23 +140,44 @@ footer {
   }
 }
 
+.home-slider {
+  height: 420px;
+  margin-top: 50px;
+}
+
+.product-slider {
+  min-width: 420px;
+  height: 600px;
+
+  @media screen and (max-width: 719px) {
+    height: 420px;
+  }
+}
+
 #menu {
   background-color: white;
   max-width: 960px;
   padding: 10px;
   margin: auto;
 
-  &:hover {
-    > ul {
-      display: block;
+  .sub {
+    position: relative;
+
+    &:hover {
+      > ul {
+        display: block;
+      }
     }
   }
 
   ul {
+    background-color: white;
     border: 1px solid black;
     position: absolute;
     display: none;
-    z-index: 1;
+    z-index: 2;
+
+    &.at-right { right: 0; }
   }
 
   li {
@@ -191,6 +208,6 @@ footer {
 
   aside {
     flex: 1 1 auto;
-    margin-left: 44px;
+    margin: 0 45px;
   }
 }

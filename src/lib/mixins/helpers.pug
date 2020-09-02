@@ -1,3 +1,4 @@
+- function rangeFor(length) { return Array.from({ length }).map((_, key) => key); }
 - var segment = self && self.parent.split('/').slice(2).join('/').replace(/\.\w+$/, '')
 - var url = `/${segment === 'index' ? '' : segment || ''}`;
 
@@ -6,16 +7,37 @@ mixin linkFor(path, title, external)
   - var href = path.indexOf('://') === -1 ? `${ROOT || ''}${path}` : path;
 
   if path === url
-    a(target=target aria-current='page' href=href)&attributes(attributes) #{title}
+    a.link(target=target aria-current='page' href=href)&attributes(attributes) #{title}
       if block
         block
   else
-    a(target=target href=href)&attributes(attributes) #{title}
+    a.link(target=target href=href)&attributes(attributes) #{title}
       if block
         block
 
 mixin iconImage(name)
-  srcFile(src=`src/resources/sprites/${name}.svg`)
+  if env.NODE_ENV !== 'production'
+    srcFile(src=`src/resources/sprites/${name}.svg`)
+  else
+    svgIcon(src=name)
 
-mixin baseTag
-  base(href=(ROOT || '') + '/')
+mixin slider(path, length)
+  - var prefix = `${ROOT || ''}${path}`
+
+  .slideshow&attributes(attributes)
+    for i in rangeFor(length)
+      .target(id=`slide${i + 1}`)
+
+    .slider
+      if block
+        block
+
+    .arrows
+      for i in rangeFor(length)
+        div
+          a(href=`${prefix}#slide${i === 0 ? length : i}`): +iconImage('left')
+          a(href=`${prefix}#slide${i < length - 1 ? i + 2 : 1}`): +iconImage('right')
+
+    .bullets
+      for i in rangeFor(length)
+        a(href=`${prefix}#slide${i + 1}`) #{i + 1}
