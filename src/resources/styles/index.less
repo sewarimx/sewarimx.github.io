@@ -126,9 +126,7 @@ h1, h2, h3 {
 }
 
 .overlay {
-  opacity: 0;
   display: flex;
-  visibility: hidden;
   align-items: center;
   justify-content: center;
   transition: opacity .3s;
@@ -241,13 +239,6 @@ h1, h2, h3 {
       height: 100%;
       left: 0;
       top: 0;
-    }
-
-    &:hover {
-      .overlay {
-        opacity: 1;
-        visibility: visible;
-      }
     }
   }
 }
