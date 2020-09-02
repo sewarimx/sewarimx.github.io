@@ -186,7 +186,6 @@ body {
 }
 body {
   margin: 0;
-  font-size: 110%;
   line-height: 1.6;
   font-weight: 100;
   font-family: Gayathri;
@@ -313,7 +312,7 @@ h3 {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 .shadowed {
   box-shadow: 1px 1px 0 black,
@@ -397,12 +396,22 @@ h3 {
   margin-top: 10px;
   position: relative;
 }
+#cat li::before {
+  box-shadow: inset 0 0 100px black;
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
 #cat li:hover .overlay {
   opacity: 1;
   visibility: visible;
 }
 #it {
   margin-top: 50px;
+  position: relative;
 }
 #it aside {
   padding: 45px;
