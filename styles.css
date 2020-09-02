@@ -303,9 +303,7 @@ h3 {
   margin: auto;
 }
 .overlay {
-  opacity: 0;
   display: flex;
-  visibility: hidden;
   align-items: center;
   justify-content: center;
   transition: opacity 0.3s;
@@ -404,10 +402,6 @@ h3 {
   height: 100%;
   left: 0;
   top: 0;
-}
-#cat li:hover .overlay {
-  opacity: 1;
-  visibility: visible;
 }
 #it {
   margin-top: 50px;
