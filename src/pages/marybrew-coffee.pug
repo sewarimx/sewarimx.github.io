@@ -1,14 +1,14 @@
 ---
-test: 42
+product: !include ../products/marybrew-coffee.yml
 ---
 
 extends ../lib/layouts/default
 
 block head
-  title MaryBrew coffee
+  title= product.name
 
 block body
-  #it
+  #it.segment
     .md-flex
       +slider('/marybrew-coffee/', 3).product-slider
         div(style='background:#5b8;')
@@ -20,5 +20,23 @@ block body
         div(style='background:#e59;')
           h2 Slide 4
       aside
-        h1 MaryBrew coffee (#{test})
-        p Esto es una descripción con mucho texto que se rompería en varias lineas...
+        h1.biggest= product.name
+        ul.reset
+          li.f-400!= product.label
+
+          if product.profile
+            li!= product.profile
+
+          if product.quantity
+            li!= product.quantity
+
+        button.nosl.shadowed SHOP NOW
+
+        if product.description
+          p!= product.description
+
+        if product.our_suggestion
+          p!= product.our_suggestion
+
+        if product.additional_info
+          p: b.small!= product.additional_info

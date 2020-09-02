@@ -11,8 +11,8 @@ html.no-js(lang='en')
   body
     destFile(src='sprites.svg')
 
-    nav#menu
-      .flex
+    nav#menu.segment
+      .nosl.flex
         span.sub
           span.icon: +iconImage('menu')
           ul.reset
@@ -23,9 +23,10 @@ html.no-js(lang='en')
           a.icon(href='mailto:sewari.mx@gmail' target='_blank'): +iconImage('email')
           a.icon(href='https://facebook.com/sewarimx' target='_blank'): +iconImage('facebook')
           a.icon(href='https://instagram.com/sewari.mx' target='_blank'): +iconImage('instagram')
-        span.sub
+        span.sub.at-right
+          span.counter -
           span.icon: +iconImage('cart')
-          ul.reset.at-right
+          ul.reset
             li: +linkFor('/checkout', 'Checkout')
 
     block body

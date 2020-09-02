@@ -13,6 +13,8 @@ html, body {
 
 body {
   margin: 0;
+  font-size: 110%;
+  line-height: 1.6;
   font-weight: 100;
   font-family: Gayathri;
 }
@@ -28,9 +30,7 @@ body {
   }
 
   &[aria-current] {
-    xtext-decoration: underline;
     font-weight: 700;
-    xcolor: black;
   }
 }
 
@@ -63,6 +63,11 @@ footer {
   text-align: center;
 }
 
+h1, h2, h3 {
+  line-height: 1;
+  margin: 0;
+}
+
 .f-100 { font-weight: 100;  }
 .f-400 { font-weight: 400;  }
 .f-700 { font-weight: 700;  }
@@ -71,7 +76,7 @@ footer {
 .normal { font-size: 1em; }
 .medium { font-size: 1.3em; }
 .bigger { font-size: 1.8em; }
-.bigest { font-size: 2.5em; }
+.biggest { font-size: 2.5em; }
 
 .flex {
   display: flex;
@@ -100,6 +105,11 @@ footer {
   }
 }
 
+.nosl {
+  cursor: default;
+  user-select: none;
+}
+
 .reset {
   background-color: inherit;
   list-style: none;
@@ -109,6 +119,11 @@ footer {
 
 .debug * {
   outline: 1px solid pink;
+}
+
+.segment {
+  max-width: 960px;
+  margin: auto;
 }
 
 .overlay {
@@ -140,6 +155,18 @@ footer {
   }
 }
 
+.counter {
+  background-color: black;
+  color: white;
+  min-width: 24px;
+  min-height: 20px;
+  line-height: 1;
+  padding-top: 10px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+}
+
 .home-slider {
   height: 420px;
   margin-top: 50px;
@@ -149,23 +176,38 @@ footer {
   min-width: 420px;
   height: 600px;
 
+  @media screen and (max-width: 959px) {
+    min-width: 360px;
+  }
+
   @media screen and (max-width: 719px) {
     height: 420px;
+  }
+
+  @media screen and (max-width: 419px) {
+    min-width: auto;
   }
 }
 
 #menu {
   background-color: white;
-  max-width: 960px;
   padding: 10px;
-  margin: auto;
 
   .sub {
     position: relative;
+    min-width: 85px;
 
     &:hover {
       > ul {
         display: block;
+      }
+    }
+
+    &.at-right {
+      text-align: right;
+
+      ul {
+        right: 0;
       }
     }
   }
@@ -175,9 +217,8 @@ footer {
     border: 1px solid black;
     position: absolute;
     display: none;
+    width: inherit;
     z-index: 2;
-
-    &.at-right { right: 0; }
   }
 
   li {
@@ -203,11 +244,10 @@ footer {
 }
 
 #it {
-  max-width: 960px;
-  margin: 50px auto 0;
+  margin-top: 50px;
 
   aside {
+    padding: 45px;
     flex: 1 1 auto;
-    margin: 0 45px;
   }
 }

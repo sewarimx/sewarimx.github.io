@@ -24,7 +24,7 @@ mixin iconImage(name)
 mixin slider(path, length)
   - var prefix = `${ROOT || ''}${path}`
 
-  .slideshow&attributes(attributes)
+  .nosl.slideshow&attributes(attributes)
     for i in rangeFor(length)
       .target(id=`slide${i + 1}`)
 

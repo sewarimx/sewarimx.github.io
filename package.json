@@ -31,7 +31,7 @@
       "public": "."
     },
     "filter": [
-      "!**/{lib,shared,components}/**"
+      "!**/{lib,shared,products,components}/**"
     ],
     "bundle": [
       "**/{main,index}.js"
