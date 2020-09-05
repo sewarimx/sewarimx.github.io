@@ -34,7 +34,7 @@
       "!**/{lib,shared,products,components}/**"
     ],
     "bundle": [
-      "**/{main,index}.js"
+      "**/app/*.js"
     ],
     "rename": [
       "**/pages/**/!(index).html:{basedir}/{name}/index.html",

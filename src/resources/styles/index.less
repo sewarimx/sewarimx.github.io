@@ -302,6 +302,32 @@ svg path { transition: all .3s;  }
   }
 }
 
+#app {
+  padding: 20px;
+
+  ul {
+    min-width: 320px;
+
+    @media screen and (min-width: 960px) {
+      min-width: 420px;
+    }
+  }
+
+  aside {
+    margin-top: 45px;
+    flex: 1 1 auto;
+
+    @media screen and (min-width: 720px) {
+      margin-left: 45px;
+      margin-top: 0;
+    }
+  }
+
+  li, aside {
+    padding: 20px;
+  }
+}
+
 #cat {
   max-width: 800px;
   margin: 80px auto 0;

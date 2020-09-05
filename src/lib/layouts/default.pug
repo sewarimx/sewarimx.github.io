@@ -41,7 +41,7 @@ html.no-js(lang='en')
             ul.reset
               li: a.link(href='https://facebook.com/sewarimx' target='_blank') fb.com/sewarimx
         span.sub.at-right.min-width
-          span.counter -
+          span#cart
           span.icon: +iconImage('cart')
           ul.reset
             li: +linkFor('/checkout', 'Checkout')
@@ -59,7 +59,8 @@ html.no-js(lang='en')
       style #menu.hide { top: 0; }
 
     includeTag(src='main.js')
-    footer
-      p Copyright &copy; #{new Date().getFullYear()} Sewari.mx
 
     block scripts
+
+    footer
+      p Copyright &copy; #{new Date().getFullYear()} Sewari.mx

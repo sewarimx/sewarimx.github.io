@@ -1,5 +1,5 @@
-import App from './components/App.svelte';
+import Cart from './components/Cart.svelte';
 
-new App({ // eslint-disable-line
-  target: document.querySelector('#app'),
+new Cart({ // eslint-disable-line
+  target: document.querySelector('#cart'),
 });
