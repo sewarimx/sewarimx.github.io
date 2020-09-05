@@ -1,9 +1,68 @@
-<div class="debug md-flex">
+<script>
+  import { cart } from '../shared/stores';
+
+  function sync() {
+    if (window.cartSync) {
+      window.cartSync($cart);
+    }
+  }
+
+  function set(e, item) {
+    item.count = parseFloat(e.target.value);
+    $cart.status = 'updated';
+    sync();
+  }
+
+  function rm(item) {
+    if (!confirm('Are you sure?')) return;
+    $cart.items = $cart.items.filter(x => x.name !== item.name);
+    $cart.status = 'removed';
+    sync();
+  }
+</script>
+
+<h1>SHOPPING LIST</h1>
+
+<div class="md-flex">
   <ul class="reset">
-    <li>ITEM</li>
-    <li>ITEM</li>
+    {#each $cart.items as item (item.name)}
+      <li class="flex nosl">
+        <div class="overlay">
+          <input type="number" min="1" value={item.count} on:change={e => set(e, item)} />
+          <button class="solid-shadow" on:click={() => rm(item)}>Remove</button>
+        </div>
+        <figure>
+          <img alt={item.name} src={item.image}/>
+          <figcaption class="flex">
+            <h2 class="f-100">{item.name}</h2>
+            <b class="bigger">${item.price * item.count}</b>
+          </figcaption>
+        </figure>
+      </li>
+    {:else}
+      <div class="wip nosl">
+        <img alt="Viznaga (logotipo)" src="viznaga_logo.png" />
+        <h2>No items in your basket...</h2>
+      </div>
+    {/each}
   </ul>
   <aside>
-    FORM
+    <h2 class="biggest">How to pay?</h2>
+    <p>How to...</p>
+    <form on:submit|preventDefault method="post" action="https://formspree.io/xdowrvjr">
+      <label>
+        <span>Field</span>
+        <input required type="text" />
+      </label>
+      <label>
+        <span>Field</span>
+        <input required type="email" />
+      </label>
+      <label>
+        <span>Field</span>
+        <textarea required rows="6"></textarea>
+      </label>
+      <button class="solid-shadow" type="submit" disabled={!$cart.items.length}>Send request</button>
+    </form>
   </aside>
 </div>

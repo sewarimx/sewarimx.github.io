@@ -58,9 +58,18 @@ button,
   font-weight: 100;
   font-family: Gayathri;
 
+  &:focus {
+    outline: none;
+    background-color: silver;
+  }
+
   &:hover {
     background-color: black;
     color: white;
+  }
+
+  &[disabled] {
+    opacity: .5;
   }
 
   + button,
@@ -303,28 +312,82 @@ svg path { transition: all .3s;  }
 }
 
 #app {
-  padding: 20px;
+  margin-top: 15px;
+  padding: 45px;
+
+  @media screen and (max-width: 719px) {
+    max-width: 520px;
+    margin: auto;
+  }
+
+  .md-flex {
+    align-items: flex-start;
+  }
 
   ul {
-    min-width: 320px;
+    margin-bottom: 45px;
+
+    @media screen and (min-width: 720px) {
+      margin-right: 45px;
+      margin-bottom: 0;
+      max-width: 50%;
+    }
 
     @media screen and (min-width: 960px) {
       min-width: 420px;
     }
   }
 
+  figure {
+    padding: 0;
+    margin: 0;
+  }
+
   aside {
-    margin-top: 45px;
     flex: 1 1 auto;
 
-    @media screen and (min-width: 720px) {
-      margin-left: 45px;
-      margin-top: 0;
+    @media screen and (min-width: 960px) {
+      min-width: 420px;
     }
   }
 
-  li, aside {
-    padding: 20px;
+  li {
+    margin-top: 25px;
+    position: relative;
+    text-align: center;
+
+    input {
+      width: 60px;
+      margin-right: 10px;
+    }
+  }
+
+  textarea, input {
+    border: 0;
+    width: 100%;
+    padding: 10px;
+    transition: all .3s;
+    border: 1px solid silver;
+    box-shadow: 1px 1px 1px silver;
+
+    &:focus {
+      outline: none;
+      border-color: black;
+      box-shadow: 1px 1px 1px black,
+                  2px 2px 1px black;
+    }
+  }
+
+  label {
+    display: block;
+
+    + label {
+      margin-top: 20px;
+    }
+  }
+
+  img {
+    max-width: 100%;
   }
 }
 
