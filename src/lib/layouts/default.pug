@@ -7,6 +7,11 @@ html.no-js(lang='en')
     meta(name='revision' content=GIT_REVISION)
     base(href=(ROOT || '') + '/')
 
+    link(rel='apple-touch-icon' sizes='180x180' href='apple-touch-icon.png')
+    link(rel='icon' type='image/png' sizes='32x32' href='favicon-32x32.png')
+    link(rel='icon' type='image/png' sizes='16x16' href='favicon-16x16.png')
+    link(rel='manifest' href='site.webmanifest')
+
     include ../partials/head
   body
     destFile(src='sprites.svg')
@@ -19,10 +24,11 @@ html.no-js(lang='en')
             li: +linkFor('/', 'Home')
             li: +linkFor('/about', 'About')
             li: +linkFor('/contact', 'Contact')
-        span.flex
-          a.icon(href='mailto:sewari.mx@gmail' target='_blank'): +iconImage('email')
-          a.icon(href='https://facebook.com/sewarimx' target='_blank'): +iconImage('facebook')
-          a.icon(href='https://instagram.com/sewari.mx' target='_blank'): +iconImage('instagram')
+        span.flex.social
+          a.icon.email(href='mailto:sewari.mx@gmail' target='_blank'): +iconImage('email', true)
+          +linkFor('/').icon.logo: +iconImage('logo', true)
+          a.icon.instagram(href='https://instagram.com/sewari.mx' target='_blank'): +iconImage('instagram', true)
+          a.icon.facebook(href='https://facebook.com/sewarimx' target='_blank'): +iconImage('facebook', true)
         span.sub.at-right
           span.counter -
           span.icon: +iconImage('cart')
