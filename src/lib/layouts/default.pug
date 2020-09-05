@@ -14,9 +14,10 @@ html.no-js(lang='en')
 
     include ../partials/head
   body
-    destFile(src='sprites.svg')
+    if process.env.NODE_ENV === 'production'
+      destFile(src='sprites.svg')
 
-    nav#menu
+    nav#menu.hide
       .nosl.flex.segment
         span.sub
           span.icon: +iconImage('menu')
@@ -37,6 +38,17 @@ html.no-js(lang='en')
 
     block body
 
+    script.
+      const topMenu = document.querySelector('#menu');
+
+      setTimeout(() => {
+        topMenu.classList.remove('hide');
+      }, 260);
+
+    noscript
+      style #menu.hide { top: 0; }
+
+    includeTag(src='main.js')
     footer
       p Copyright &copy; #{new Date().getFullYear()} Sewari.mx
 
