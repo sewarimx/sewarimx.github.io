@@ -253,18 +253,20 @@ svg path { transition: all .3s;  }
     &:hover {
       > ul {
         display: block;
-      }
 
-      &::before {
-        position: absolute;
-        content: '';
-        background-color: white;
-        width: 12px;
-        height: 12px;
-        z-index: 3;
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-        transform: rotate(45deg) translate(34px, 18px);
+        &::before {
+          position: absolute;
+          content: '';
+          background-color: white;
+          width: 12px;
+          height: 12px;
+          z-index: 3;
+          border-top: 1px solid black;
+          border-left: 1px solid black;
+          top: -7px;
+          left: 8px;
+          transform: rotate(45deg);
+        }
       }
     }
 
@@ -273,6 +275,11 @@ svg path { transition: all .3s;  }
 
       ul {
         right: 0;
+
+        &::before {
+          left: auto;
+          right: 8px;
+        }
       }
     }
   }
