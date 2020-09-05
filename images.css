@@ -8,9 +8,9 @@ i[class^="x-"], i[class*=" x-"] {
   display: inline-block;
 }
 
-.x-coldbrew_bottle {
-  width: 420px; height: 600px;
-  background-image: url(images/coldbrew_bottle.jpg);
+.x-sewarimx {
+  width: 420px; height: 420px;
+  background-image: url(images/sewarimx.png);
 }
 
 
