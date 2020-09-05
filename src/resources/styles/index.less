@@ -41,8 +41,8 @@ body {
   padding: 50px;
   margin: auto;
 
-  img {
-    max-width: 200px;
+  svg {
+    max-width: 100%;
   }
 }
 
@@ -105,22 +105,18 @@ svg path { transition: all .3s;  }
 
 .icon {
   display: inline-block;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 
   svg {
     width: inherit;
     height: inherit;
   }
-
-  + .icon {
-    margin-left: 10px;
-  }
 }
 
 .logo {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
 }
 
 .nosl {
@@ -156,7 +152,7 @@ svg path { transition: all .3s;  }
 }
 
 .box-shadow {
-  box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.9);
+  box-shadow: 10px 10px 50px rgba(0, 0, 0, .9);
 }
 
 .solid-shadow {
@@ -215,15 +211,15 @@ svg path { transition: all .3s;  }
   position: fixed;
   padding: 10px;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   left: 0;
   top: 0;
 
   &.hide { top: -85px; }
 
-  .email:hover path { fill: #B23121; }
-  .instagram:hover path { fill: #F00076; }
-  .facebook:hover path { fill: #3d5a9a; }
+  .email:hover .icon path { fill: #B23121; }
+  .instagram:hover .icon path { fill: #F00076; }
+  .facebook:hover .icon path { fill: #3d5a9a; }
 
   .social {
     .icon {
@@ -236,15 +232,30 @@ svg path { transition: all .3s;  }
     &:hover {
       .icon { opacity: 1; }
     }
+
+    > * {
+      min-width: 32px;
+    }
   }
 
   .sub {
     position: relative;
-    min-width: 85px;
 
     &:hover {
       > ul {
         display: block;
+      }
+
+      &::before {
+        position: absolute;
+        content: '';
+        background-color: white;
+        width: 12px;
+        height: 12px;
+        z-index: 3;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        transform: rotate(45deg) translate(34px, 18px);
       }
     }
 
@@ -258,6 +269,7 @@ svg path { transition: all .3s;  }
   }
 
   ul {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
     background-color: white;
     border: 1px solid black;
     position: absolute;
@@ -268,6 +280,25 @@ svg path { transition: all .3s;  }
 
   li {
     padding: 10px;
+  }
+
+  @media screen and (min-width: 420px) {
+    .min-width {
+      min-width: 85px;
+    }
+    .social {
+      > * {
+        min-width: 42px;
+      }
+    }
+    .icon {
+      width: 32px;
+      height: 32px;
+    }
+    .logo {
+      width: 64px;
+      height: 64px;
+    }
   }
 }
 
