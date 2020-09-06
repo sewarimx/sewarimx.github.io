@@ -26,8 +26,8 @@ body {
   color: black;
 
   &:hover {
-    background-color: black;
-    color: white;
+    xbackground-color: black;
+    xcolor: white;
   }
 
   &[aria-current] {
@@ -41,8 +41,9 @@ body {
   padding: 50px;
   margin: auto;
 
-  img {
+  svg, img {
     max-width: 100%;
+    min-width: 320px;
   }
 }
 
@@ -126,6 +127,7 @@ svg path { transition: all .3s;  }
 .logo {
   width: 48px;
   height: 48px;
+  position: relative;
 }
 
 .nosl {

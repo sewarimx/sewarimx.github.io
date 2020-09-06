@@ -43,7 +43,6 @@
       </li>
     {:else}
       <div class="wip nosl">
-        <img alt="Viznaga (logotipo)" src="viznaga_logo.png" />
         <h2>No items in your basket...</h2>
       </div>
     {/each}
