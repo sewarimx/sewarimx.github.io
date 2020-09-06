@@ -43,7 +43,10 @@ body {
 
   svg, img {
     max-width: 100%;
-    min-width: 320px;
+
+    @media screen and (min-width: 420px) {
+      min-width: 320px;
+    }
   }
 }
 

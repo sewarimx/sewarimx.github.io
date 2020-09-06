@@ -23,18 +23,17 @@
   }
 </script>
 
-<h1>SHOPPING LIST</h1>
-
+<h1 class="nosl">SHOPPING LIST</h1>
 <div class="md-flex">
   <ul class="reset">
     {#each $cart.items as item (item.key)}
-      <li class="flex nosl">
+      <li class="flex">
         <div class="overlay">
           <input type="number" min="1" value={item.count} on:change={e => set(e, item)} />
-          <button class="solid-shadow" on:click={() => rm(item)}>Remove</button>
+          <button class="nosl solid-shadow" on:click={() => rm(item)}>Remove</button>
         </div>
         <figure>
-          <img alt={products[item.key].name} src={products[item.key].image}/>
+          <img class="nosl" alt={products[item.key].name} src={products[item.key].image}/>
           <figcaption class="flex">
             <h2 class="f-100">{products[item.key].name}</h2>
             <b class="bigger">${products[item.key].price * item.count}</b>
@@ -48,22 +47,22 @@
     {/each}
   </ul>
   <aside>
-    <h2 class="biggest">How to pay?</h2>
-    <p>How to...</p>
+    <h2 class="nosl biggest">How to pay?</h2>
+    <p class="nosl">How to...</p>
     <form on:submit|preventDefault method="post" action="https://formspree.io/xdowrvjr">
-      <label>
+      <label class="nosl">
         <span>Field</span>
         <input required type="text" />
       </label>
-      <label>
+      <label class="nosl">
         <span>Field</span>
         <input required type="email" />
       </label>
-      <label>
+      <label class="nosl">
         <span>Field</span>
         <textarea required rows="6"></textarea>
       </label>
-      <button class="solid-shadow" type="submit" disabled={!$cart.items.length}>Send request</button>
+      <button class="nosl solid-shadow" type="submit" disabled={!$cart.items.length}>Send request</button>
     </form>
   </aside>
 </div>
