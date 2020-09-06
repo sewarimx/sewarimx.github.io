@@ -1,0 +1,32 @@
+extends ../layouts/default
+
+block head
+  title= item.name
+
+block body
+  #it.segment
+    .md-flex
+      +slider(`/${item.product.key}/`, item.slides.length).product-slider
+        each image in item.slides
+          div(style=`background-image:url(${image});`)
+      aside
+        h1.biggest= item.product.name
+        ul.reset
+          li.f-400!= item.label
+
+          if item.profile
+            li!= item.profile
+
+          if item.quantity
+            li!= item.quantity
+
+        button.nosl.solid-shadow(data-buy=item.product.key) $#{item.product.price} MXN &mdash; COMPRAR
+
+        if item.description
+          p!= item.description
+
+        if item.our_suggestion
+          p!= item.our_suggestion
+
+        if item.additional_info
+          p: b.small!= item.additional_info
