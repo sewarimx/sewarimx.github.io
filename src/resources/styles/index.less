@@ -373,8 +373,15 @@ svg path { transition: all .3s;  }
     text-align: center;
 
     input {
+      text-align: center;
+      position: relative;
       width: 60px;
-      margin-right: 10px;
+      z-index: 2;
+    }
+
+    .inc, .dec {
+      position: relative;
+      z-index: 1;
     }
   }
 

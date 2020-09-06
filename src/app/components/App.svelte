@@ -9,6 +9,19 @@
     }
   }
 
+  function dec(item) {
+    if (item.count < 2) return;
+    item.count = Math.max(1, item.count - 1);
+    $cart.status = 'updated';
+    sync();
+  }
+
+  function inc(item) {
+    item.count += 1;
+    $cart.status = 'updated';
+    sync();
+  }
+
   function set(e, item) {
     item.count = parseFloat(e.target.value);
     $cart.status = 'updated';
@@ -29,7 +42,9 @@
     {#each $cart.items as item (item.key)}
       <li class="flex">
         <div class="overlay">
+          <button class="nosl dec" on:click={() => dec(item)}>-</button>
           <input type="number" min="1" value={item.count} on:change={e => set(e, item)} />
+          <button class="nosl inc" on:click={() => inc(item)}>+</button>
           <button class="nosl solid-shadow" on:click={() => rm(item)}>Remove</button>
         </div>
         <figure>
