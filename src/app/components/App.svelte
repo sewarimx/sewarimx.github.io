@@ -32,7 +32,6 @@
       })),
     };
 
-    $cart.status = 'idle';
     $cart.items = [];
     done = true;
     sync();
