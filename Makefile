@@ -151,7 +151,7 @@ pages: ## Fetch or create the target branch
 deploy: pages ## Prepare and push changes on target branch
 	@(mv $(src) .backup > /dev/null 2>&1) || true
 	@(git worktree remove $(src) --force > /dev/null 2>&1) || true
-	@(git worktree add $(src) $(target) && cp -r .backup/* $(src)) || true
+	@(git worktree add $(src) $(target) && (cp -r .backup/* $(src) > /dev/null 2>&1)) || true
 	@cd $(src) && git add . && git commit -m "$(message)" || true
 	@(mv .backup $(src) > /dev/null 2>&1) || true
 	@git push origin $(target) -f || true
