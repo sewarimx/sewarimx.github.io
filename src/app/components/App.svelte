@@ -1,7 +1,15 @@
 <script>
   import { cart } from '../shared/stores';
+  import Num from './Number.svelte';
+  import In from './Input.svelte';
 
   const products = window.products$ || [];
+
+  let done = false;
+
+  function close() {
+    done = false;
+  }
 
   function sync() {
     if (window.cartSync) {
@@ -9,75 +17,115 @@
     }
   }
 
-  function dec(item) {
-    if (item.count < 2) return;
-    item.count = Math.max(1, item.count - 1);
-    $cart.status = 'updated';
-    sync();
-  }
+  function send(e, data) {
+    const { elements, method, action } = e.target;
 
-  function inc(item) {
-    item.count += 1;
-    $cart.status = 'updated';
+    const payload = {
+      emailaddr: elements.emailaddr.value,
+      fulladdr: elements.fulladdr.value,
+      fullname: elements.fullname.value,
+      phonenum: elements.phonenum.value,
+      products: data.map(x => ({
+        qty: x.count,
+        name: x.name,
+        total: x.total,
+      })),
+    };
+
+    $cart.status = 'idle';
+    $cart.items = [];
+    done = true;
     sync();
+
+    fetch(action, {
+      method,
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'appication/json',
+      },
+    });
   }
 
   function set(e, item) {
-    item.count = parseFloat(e.target.value);
+    const target = $cart.items.find(x => x.key === item.key);
+
+    target.count = parseFloat((e.detail || e.target).value);
     $cart.status = 'updated';
     sync();
   }
 
   function rm(item) {
-    if (!confirm('Are you sure?')) return;
+    if (!confirm('¿Estás seguro?')) return;
     $cart.items = $cart.items.filter(x => x.key !== item.key);
     $cart.status = 'removed';
     sync();
   }
+
+  $: fixedCart = $cart.items.map(x => ({
+    ...x,
+    ...products[x.key],
+    total: products[x.key].price * x.count,
+  }));
 </script>
 
-<h1 class="nosl">SHOPPING LIST</h1>
+{#if done}
+  <div class="fixed overlay">
+    <div class="nosl">
+      <h2 class="biggest">MUCHAS GRACIAS</h2>
+      <p>Tu pedido ha sido recibido, nos comunicaremos contigo a la brevedad.</p>
+      <button class="solid-shadow" on:click={close}>CERRAR</button>
+    </div>
+  </div>
+{/if}
+
+<h1 class="nosl biggest">SHOPPING LIST</h1>
 <div class="md-flex">
   <ul class="reset">
-    {#each $cart.items as item (item.key)}
+    {#each fixedCart as item (item.key)}
       <li class="flex">
         <div class="overlay">
-          <button class="nosl dec" on:click={() => dec(item)}>-</button>
-          <input type="number" min="1" value={item.count} on:change={e => set(e, item)} />
-          <button class="nosl inc" on:click={() => inc(item)}>+</button>
-          <button class="nosl solid-shadow" on:click={() => rm(item)}>Remove</button>
+          <Num value={item.count} on:change={e => set(e, item)} />
+          <button class="nosl solid-shadow" on:click={() => rm(item)}>Eliminar</button>
         </div>
         <figure>
-          <img class="nosl" alt={products[item.key].name} src={products[item.key].image}/>
+          <img class="nosl" alt={item.name} src={item.image}/>
           <figcaption class="flex">
-            <h2 class="f-100">{products[item.key].name}</h2>
-            <b class="bigger">${products[item.key].price * item.count}</b>
+            <h2 class="f-100">{item.name}</h2>
+            <b class="bigger">${item.price * item.count}</b>
           </figcaption>
         </figure>
       </li>
     {:else}
-      <div class="wip nosl">
+      <li class="wip nosl">
         <h2>No items in your basket...</h2>
-      </div>
+      </li>
     {/each}
+    <li class="flex">
+      <h3>Total</h3>
+      <b class="bigger">${fixedCart.reduce((sum, x) => sum + x.total, 0)}</b>
+    </li>
   </ul>
   <aside>
-    <h2 class="nosl biggest">How to pay?</h2>
-    <p class="nosl">How to...</p>
-    <form on:submit|preventDefault method="post" action="https://formspree.io/xdowrvjr">
+    <h2 class="nosl bigger">CONTACT INFO.</h2>
+    <p class="nosl">Platícanos más sobre ti, después de recibir tu pedido nos comunicaremos contigo para confirmar y agendar la entrega/pago.</p>
+    <form on:submit|preventDefault={e => send(e, fixedCart)} method="post" action="https://formspree.io/xdowrvjr">
       <label class="nosl">
-        <span>Field</span>
-        <input required type="text" />
+        <span>Tu nombre:</span>
+        <In required name="fullname" type="text" msg="Por favor escribe tu nombre" />
       </label>
       <label class="nosl">
-        <span>Field</span>
-        <input required type="email" />
+        <span>Correo electrónico:</span>
+        <In required name="emailaddr" type="email" msg="Por favor escribe tu correo" />
       </label>
       <label class="nosl">
-        <span>Field</span>
-        <textarea required rows="6"></textarea>
+        <span>Número telefónico:</span>
+        <In required name="phonenum" type="text" msg="Por favor escribe tu número" />
       </label>
-      <button class="nosl solid-shadow" type="submit" disabled={!$cart.items.length}>Send request</button>
+      <label class="nosl">
+        <span>Dirección de entrega:</span>
+        <In required name="fulladdr" type="textarea" rows="6" msg="Por favor escribe tu dirección" />
+      </label>
+      <button class="nosl solid-shadow" type="submit" disabled={!$cart.items.length}>Realizar pedido</button>
     </form>
   </aside>
 </div>

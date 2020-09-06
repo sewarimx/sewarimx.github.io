@@ -167,6 +167,14 @@ svg path { transition: all .3s;  }
   height: 100%;
   position: absolute;
   background-color: rgba(255, 255, 255, .3);
+
+  &.fixed {
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+  }
 }
 
 .box-shadow {
@@ -372,16 +380,13 @@ svg path { transition: all .3s;  }
     position: relative;
     text-align: center;
 
-    input {
-      text-align: center;
-      position: relative;
-      width: 60px;
-      z-index: 2;
+    span + button {
+      margin-left: 10px;
     }
 
-    .inc, .dec {
-      position: relative;
-      z-index: 1;
+    &:last-child {
+      padding-top: 25px;
+      border-top: 1px solid black;
     }
   }
 
@@ -404,7 +409,8 @@ svg path { transition: all .3s;  }
   label {
     display: block;
 
-    + label {
+    + label,
+    + button {
       margin-top: 20px;
     }
   }
