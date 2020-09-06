@@ -1,6 +1,8 @@
 <script>
   import { cart } from '../shared/stores';
 
+  const products = window.products$ || [];
+
   function sync() {
     if (window.cartSync) {
       window.cartSync($cart);
@@ -15,7 +17,7 @@
 
   function rm(item) {
     if (!confirm('Are you sure?')) return;
-    $cart.items = $cart.items.filter(x => x.name !== item.name);
+    $cart.items = $cart.items.filter(x => x.key !== item.key);
     $cart.status = 'removed';
     sync();
   }
@@ -25,17 +27,17 @@
 
 <div class="md-flex">
   <ul class="reset">
-    {#each $cart.items as item (item.name)}
+    {#each $cart.items as item (item.key)}
       <li class="flex nosl">
         <div class="overlay">
           <input type="number" min="1" value={item.count} on:change={e => set(e, item)} />
           <button class="solid-shadow" on:click={() => rm(item)}>Remove</button>
         </div>
         <figure>
-          <img alt={item.name} src={item.image}/>
+          <img alt={products[item.key].name} src={products[item.key].image}/>
           <figcaption class="flex">
-            <h2 class="f-100">{item.name}</h2>
-            <b class="bigger">${item.price * item.count}</b>
+            <h2 class="f-100">{products[item.key].name}</h2>
+            <b class="bigger">${products[item.key].price * item.count}</b>
           </figcaption>
         </figure>
       </li>

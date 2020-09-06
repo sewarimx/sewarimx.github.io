@@ -1,8 +1,9 @@
 #cat
   ul.nosl.reset
-    li.fix-cover
-      .overlay
-        .actions
-          +linkFor('/marybrew-coffee/', 'View more').solid-shadow.button
-          button.solid-shadow(data-buy='marybrew-coffee') SHOP NOW
-      img(alt='FIXME' src='images/coldbrew_three_bottles.jpg')
+    each item in data.items
+      li.fix-cover
+        .overlay
+          .actions
+            +linkFor(`/${item.product.key}/`, 'View more').solid-shadow.button
+            button.solid-shadow(data-buy=item.product.key) $#{item.product.price} MXN &mdash; SHOP NOW
+        img(alt=item.product.name src=item.product.image)

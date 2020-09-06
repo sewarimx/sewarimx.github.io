@@ -9,15 +9,13 @@
 
   function add(e) {
     if (e.target.tagName === 'BUTTON' && e.target.dataset.buy) {
-      const currentItem = $cart.items.find(x => x.name === e.target.dataset.buy);
+      const currentItem = $cart.items.find(x => x.key === e.target.dataset.buy);
 
       if (currentItem) {
         currentItem.count += 1;
       } else {
         $cart.items.push({
-          image: 'images/coldbrew_three_bottles.jpg',
-          name: e.target.dataset.buy,
-          price: 1.99,
+          key: e.target.dataset.buy,
           count: 1,
         });
       }

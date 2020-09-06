@@ -1,13 +1,26 @@
-name: MaryBrew coffee
+product:
+  image: images/coldbrew_three_bottles.jpg
+  name: MaryBrew coffee
+  key: marybrew-coffee
+  price: 1.99
+
+slides:
+  - images/coldbrew_bottle.jpg
+  - images/coldbrew_display.jpg
+  - images/coldbrew_serving.jpg
+
 label: MAR NEGRO CAFÉ X SEWARI
 profile: Oaxaca sierra mixe
 quantity: 3360 msnm
+
 description: |
   Proceso despulpado productores familia Martínez.<br />
   «notas de vainilla, cacao semi amargos, acidez tántrica, caramelos, maple»
+
 our_suggestion: |
   <b>¿Por que tomar café con cbd?</b>
   La cafeína y el cannabidiol (cbd) trabajan en sinergia, aumentando tu energía y
   concentración contrarrestando los efectos no deseados de la cafeína como la ansiedad,
   taquicardia y temblores.
+
 additional_info: Infusionado con cbd puro. 0% thc / 99.59% cbd

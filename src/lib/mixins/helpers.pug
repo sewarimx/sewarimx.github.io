@@ -1,5 +1,5 @@
 - function rangeFor(length) { return Array.from({ length }).map((_, key) => key); }
-- var segment = self && self.parent.split('/').slice(2).join('/').replace(/\.\w+$/, '')
+- var segment = self && self.parent.split('/').slice(2).join('/').replace(/\.\w+$/, '');
 - var url = `/${segment === 'index' ? '' : segment || ''}`;
 
 mixin linkFor(path, title, external)
@@ -22,7 +22,7 @@ mixin iconImage(name, forced)
     svgIcon(src=name)
 
 mixin slider(path, length)
-  - var prefix = `${ROOT || ''}${path}`
+  - var prefix = `${ROOT || ''}${path}`;
 
   .nosl.slideshow&attributes(attributes)
     for i in rangeFor(length)

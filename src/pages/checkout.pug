@@ -1,3 +1,7 @@
+---
+data: !include ../products/_collection.yml
+---
+
 extends ../lib/layouts/default
 
 block head
@@ -7,4 +11,6 @@ block body
   #app.segment
 
 block scripts
+  - var payload = data.items.reduce((memo, p) => Object.assign(memo, { [p.product.key]: p.product }), {});
+  script window.products$ = !{JSON.stringify(payload)};
   includeTag(src='app.js')
