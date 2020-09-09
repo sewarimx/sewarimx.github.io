@@ -448,6 +448,7 @@ svg path {
 }
 #menu .sub {
   position: relative;
+  cursor: pointer;
 }
 #menu .sub:hover > ul {
   display: block;
