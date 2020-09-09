@@ -450,6 +450,9 @@ svg path {
   position: relative;
   cursor: pointer;
 }
+#menu .sub input[checked] + ul {
+  display: block;
+}
 #menu .sub:hover > ul {
   display: block;
 }
