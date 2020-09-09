@@ -4,10 +4,16 @@ product:
   key: marybrew-coffee
   price: 1.99
 
+
 slides:
   - images/coldbrew_bottle.jpg
   - images/coldbrew_display.jpg
   - images/coldbrew_serving.jpg
+
+social:
+  url: https://instagram.com/marnegro.cafe
+  icon: instagram
+  display: '@marnegro.cafe'
 
 label: MAR NEGRO CAFÉ X SEWARI
 profile: Oaxaca sierra mixe

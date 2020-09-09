@@ -120,6 +120,20 @@ svg path { transition: all .3s;  }
   justify-content: space-between;
 }
 
+.media {
+  display: table;
+  margin-bottom: 10px;
+
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+
+    + * {
+      padding-left: 5px;
+    }
+  }
+}
+
 @media screen and (min-width: 720px) {
   .md-flex { .flex; }
 }
@@ -272,7 +286,8 @@ svg path { transition: all .3s;  }
     position: relative;
     cursor: pointer;
 
-    > button:focus + ul {
+    > button:focus + ul,
+    &:hover > ul {
       display: block;
 
       &::before {
