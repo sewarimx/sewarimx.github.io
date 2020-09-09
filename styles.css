@@ -450,11 +450,11 @@ svg path {
   position: relative;
   cursor: pointer;
 }
-#menu .sub > input[checked] + ul,
+#menu .sub > input:checked + ul,
 #menu .sub:hover > ul {
   display: block;
 }
-#menu .sub > input[checked] + ul::before,
+#menu .sub > input:checked + ul::before,
 #menu .sub:hover > ul::before {
   position: absolute;
   content: '';
