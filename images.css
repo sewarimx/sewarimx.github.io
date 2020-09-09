@@ -8,9 +8,37 @@ i[class^="x-"], i[class*=" x-"] {
   display: inline-block;
 }
 
-.x-sewarimx {
-  width: 395px; height: 405px;
-  background-image: url(images/sewarimx.png);
+.x-coldbrew_bottle {
+  width: 420px; height: 600px;
+  background-image: url(images/coldbrew_bottle.jpg);
+}
+.x-coldbrew_display {
+  width: 420px; height: 600px;
+  background-image: url(images/coldbrew_display.jpg);
+}
+.x-coldbrew_three_bottles {
+  width: 800px; height: 400px;
+  background-image: url(images/coldbrew_three_bottles.jpg);
+}
+.x-outdoor_white_cup_bottom {
+  width: 960px; height: 420px;
+  background-image: url(images/outdoor_white_cup_bottom.jpg);
+}
+.x-outdoor_white_cup_left {
+  width: 960px; height: 420px;
+  background-image: url(images/outdoor_white_cup_left.jpg);
+}
+.x-outdoor_white_cup_right {
+  width: 960px; height: 420px;
+  background-image: url(images/outdoor_white_cup_right.jpg);
+}
+.x-vietnam_top_front {
+  width: 960px; height: 420px;
+  background-image: url(images/vietnam_top_front.jpg);
+}
+.x-coldbrew_serving {
+  width: 420px; height: 600px;
+  background-image: url(images/coldbrew_serving.jpg);
 }
 
 
