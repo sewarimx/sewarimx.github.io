@@ -84,6 +84,10 @@ button,
   + .button {
     margin-left: 10px;
   }
+
+  &.blank {
+    background-color: transparent;
+  }
 }
 
 footer {
@@ -266,24 +270,23 @@ svg path { transition: all .3s;  }
 
   .sub {
     position: relative;
+    cursor: pointer;
 
-    &:hover {
-      > ul {
-        display: block;
+    > button:focus + ul {
+      display: block;
 
-        &::before {
-          position: absolute;
-          content: '';
-          background-color: white;
-          width: 12px;
-          height: 12px;
-          z-index: 3;
-          border-top: 1px solid black;
-          border-left: 1px solid black;
-          top: -7px;
-          left: 8px;
-          transform: rotate(45deg);
-        }
+      &::before {
+        position: absolute;
+        content: '';
+        background-color: white;
+        width: 12px;
+        height: 12px;
+        z-index: 3;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        top: -7px;
+        left: 8px;
+        transform: rotate(45deg);
       }
     }
 
@@ -294,8 +297,8 @@ svg path { transition: all .3s;  }
         right: 0;
 
         &::before {
-          left: auto;
-          right: 8px;
+          left: auto !important;
+          right: 8px !important;
         }
       }
     }
