@@ -7,15 +7,19 @@
 
   let ref;
 
+  function sync() {
+    dispatch('change', ref);
+  }
+
   function inc() {
     ref.value = parseFloat(ref.value) + 1;
-    dispatch('change', ref);
+    sync();
   }
 
   function dec() {
     if (ref.value <= ref.getAttribute('min')) return;
     ref.value = parseFloat(ref.value) - 1;
-    dispatch('change', ref);
+    sync();
   }
 </script>
 
@@ -39,6 +43,6 @@
 
 <span>
   <button class="nosl" on:click={dec}>-</button>
-  <input type="number" min="1" bind:this={ref} bind:value on:change />
+  <input type="number" min="1" bind:this={ref} bind:value on:change={sync} />
   <button class="nosl" on:click={inc}>+</button>
 </span>

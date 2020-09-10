@@ -29,7 +29,7 @@
 </script>
 
 {#if type === 'textarea'}
-  <textarea on:invalid={check} on:input={reset} on:change={update} {...fixedProps} />
+  <textarea on:invalid={check} on:input={reset} on:blur={update} {...fixedProps} />
 {:else}
-  <input on:invalid={check} on:input={reset} on:change={update} {...fixedProps} {type} />
+  <input on:invalid={check} on:input={reset} on:blur={update} {...fixedProps} {type} />
 {/if}

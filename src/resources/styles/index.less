@@ -26,8 +26,8 @@ body {
   color: black;
 
   &:hover {
-    xbackground-color: black;
-    xcolor: white;
+    background-color: black;
+    color: white;
   }
 
   &[aria-current] {
@@ -84,10 +84,6 @@ button,
   + .button {
     margin-left: 10px;
   }
-
-  &.blank {
-    background-color: transparent;
-  }
 }
 
 footer {
@@ -117,7 +113,18 @@ svg path { transition: all .3s;  }
 .flex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
+  &.around {
+    justify-content: space-between;
+  }
+}
+
+.space {
+  margin-top: 10px;
+
+  > * + * {
+    margin-left: 10px;
+  }
 }
 
 .media {
@@ -153,6 +160,10 @@ svg path { transition: all .3s;  }
   width: 48px;
   height: 48px;
   position: relative;
+
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 .nosl {
@@ -227,6 +238,16 @@ svg path { transition: all .3s;  }
   border-radius: 5px;
 }
 
+.actions {
+  text-align: center;
+  color: white;
+
+  h3 {
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0, 0, 0, .8);
+  }
+}
+
 .home-slider {
   height: 420px;
   margin-top: 50px;
@@ -286,7 +307,7 @@ svg path { transition: all .3s;  }
     position: relative;
     cursor: pointer;
 
-    > button:focus + ul,
+    // > button:focus + ul,
     &:hover > ul {
       display: block;
 
@@ -353,6 +374,15 @@ svg path { transition: all .3s;  }
   }
 }
 
+#prod {
+  small {
+    background-color: rgba(0, 0, 0, .1);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+    padding: 0 5px;
+    color: black;
+  }
+}
+
 #app {
   margin-top: 15px;
   padding: 45px;
@@ -396,7 +426,6 @@ svg path { transition: all .3s;  }
   li {
     margin-top: 25px;
     position: relative;
-    text-align: center;
 
     span + button {
       margin-left: 10px;
@@ -465,5 +494,9 @@ svg path { transition: all .3s;  }
   aside {
     padding: 45px;
     flex: 1 1 auto;
+  }
+
+  h3 {
+    margin-top: 25px;
   }
 }

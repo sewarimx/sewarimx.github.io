@@ -21,36 +21,31 @@ html.no-js(lang='en')
       destFile(src='sprites.svg')
 
     nav#menu.hide
-      .nosl.flex.segment
-        span.sub.min-width
-          button.blank
-            span.icon: +iconImage('menu')
+      .nosl.flex.around.segment
+        span.sub.min-width(onclick='')
+          span.icon: +iconImage('menu')
           ul.reset
             li: +linkFor('/', 'Home')
             li: +linkFor('/about', 'About')
             li: +linkFor('/contact', 'Contact')
         span.flex.social
-          span.sub.email
-            button.blank
-              span.icon: +iconImage('email', true)
+          span.sub.email(onclick='')
+            span.icon: +iconImage('email', true)
             ul.reset
               li: a.link(href='mailto:sewari.mx@gmail.com') sewari.mx@gmail.com
           span
             +linkFor('/').icon.logo: +iconImage('logo_viznaga')
-          span.sub.at-right.instagram
-            button.blank
-              span.icon: +iconImage('instagram', true)
+          span.sub.at-right.instagram(onclick='')
+            span.icon: +iconImage('instagram', true)
             ul.reset
               li: a.link(href='https://instagram.com/sewari.mx' target='_blank') @sewari.mx
-          span.sub.at-right.facebook
-            button.blank
-              span.icon: +iconImage('facebook', true)
+          span.sub.at-right.facebook(onclick='')
+            span.icon: +iconImage('facebook', true)
             ul.reset
               li: a.link(href='https://facebook.com/sewarimx' target='_blank') fb.com/sewarimx
-        span.sub.at-right.min-width
-          button.blank
-            span#cart
-            span.icon: +iconImage('cart')
+        span.sub.at-right.min-width(onclick='')
+          span#cart
+          span.icon: +iconImage('cart')
           ul.reset
             li: +linkFor('/checkout', 'Checkout')
 

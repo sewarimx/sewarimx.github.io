@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 block head
-  title= item.name
+  title= item.product.name
 
 block body
   #it.segment
@@ -19,13 +19,15 @@ block body
               span.icon: +iconImage('instagram', true)
               span #{item.social.display}
 
+        #prod
+
+        h3 Detalles
+        ul.reset
           if item.profile
             li!= item.profile
 
           if item.quantity
             li!= item.quantity
-
-        button.nosl.solid-shadow(data-buy=item.product.key) $#{item.product.price} MXN &mdash; COMPRAR
 
         if item.description
           p!= item.description
@@ -35,3 +37,7 @@ block body
 
         if item.additional_info
           p: b.small!= item.additional_info
+
+block scripts
+  script window.product$ = !{JSON.stringify(item.product)};
+  includeTag(src='prods.js')

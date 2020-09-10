@@ -4,6 +4,6 @@
       li.fix-cover
         .overlay
           .actions
+            h3.bigger= item.product.name
             +linkFor(`/${item.product.key}/`, 'Ver más').solid-shadow.button
-            button.solid-shadow(data-buy=item.product.key) $#{item.product.price} MXN &mdash; COMPRAR
         img(alt=item.product.name src=item.product.image)

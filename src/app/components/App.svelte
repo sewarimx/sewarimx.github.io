@@ -1,9 +1,10 @@
 <script>
+  import { formatMoney } from '../shared/helpers';
   import { cart } from '../shared/stores';
   import Num from './Number.svelte';
   import In from './Input.svelte';
 
-  const products = window.products$ || [];
+  const products = window.products$ || {};
 
   /* global FORMSPREE_API_CODE */
 
@@ -28,9 +29,11 @@
       fullname: elements.fullname.value,
       phonenum: elements.phonenum.value,
       products: data.map(x => ({
-        qty: x.count,
+        qty: x.qty,
         name: x.name,
+        cost: x.value,
         total: x.total,
+        detail: x.label,
       })),
     };
 
@@ -48,16 +51,16 @@
   }
 
   function set(e, item) {
-    const target = $cart.items.find(x => x.key === item.key);
+    const target = $cart.items.find(x => x.id === item.id);
 
-    target.count = parseFloat((e.detail || e.target).value);
+    target.qty = parseFloat(e.detail.value);
     $cart.status = 'updated';
     sync();
   }
 
   function rm(item) {
     if (!confirm('¿Estás seguro?')) return;
-    $cart.items = $cart.items.filter(x => x.key !== item.key);
+    $cart.items = $cart.items.filter(x => x.id !== item.id);
     $cart.status = 'removed';
     sync();
   }
@@ -65,7 +68,7 @@
   $: fixedCart = $cart.items.map(x => ({
     ...x,
     ...products[x.key],
-    total: products[x.key].price * x.count,
+    total: x.value * x.qty,
   }));
 </script>
 
@@ -82,17 +85,20 @@
 <h1 class="nosl biggest">SHOPPING LIST</h1>
 <div class="md-flex">
   <ul class="reset">
-    {#each fixedCart as item (item.key)}
+    {#each fixedCart as item (item.id)}
       <li class="flex">
         <div class="overlay">
-          <Num value={item.count} on:change={e => set(e, item)} />
+          <Num value={item.qty} on:change={e => set(e, item)} />
           <button class="nosl solid-shadow" on:click={() => rm(item)}>Eliminar</button>
         </div>
         <figure>
           <img class="nosl" alt={item.name} src={item.image}/>
-          <figcaption class="flex">
-            <h2 class="f-100">{item.name}</h2>
-            <b class="bigger">${item.price * item.count}</b>
+          <figcaption class="flex around">
+            <div>
+              <h2 class="f-100">{item.name}</h2>
+              {item.label} x {item.qty}
+            </div>
+            <b class="bigger">${formatMoney(item.value * item.qty)}</b>
           </figcaption>
         </figure>
       </li>
@@ -101,9 +107,9 @@
         <h2>No items in your basket...</h2>
       </li>
     {/each}
-    <li class="flex">
+    <li class="flex around">
       <h3>Total</h3>
-      <b class="bigger">${fixedCart.reduce((sum, x) => sum + x.total, 0)}</b>
+      <b class="bigger">${formatMoney(fixedCart.reduce((sum, x) => sum + x.total, 0))}</b>
     </li>
   </ul>
   <aside>

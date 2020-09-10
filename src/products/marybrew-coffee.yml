@@ -1,9 +1,14 @@
 product:
+  prices:
+    - label: 1pza 250ml
+      value: 150
+    - label: 1pza 1000ml
+      value: 490
+    - label: 1pza 4000ml
+      value: 990
   image: images/coldbrew_three_bottles.jpg
   name: MaryBrew coffee
   key: marybrew-coffee
-  price: 1.99
-
 
 slides:
   - images/coldbrew_bottle.jpg
