@@ -18,4 +18,4 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin gh-pages
-          make deploy
+          make deploy FORMSPREE_API_CODE=${{ secrets.FORMSPREE_API_CODE }}
