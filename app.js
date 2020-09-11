@@ -897,7 +897,7 @@
 				button.textContent = "CERRAR";
 				h2.className = "biggest";
 				button.className = "solid-shadow";
-				div0.className = "nosl";
+				div0.className = "nosl pad";
 				div1.className = "fixed overlay";
 				dispose = listen(button, "click", ctx.close);
 			},

@@ -210,6 +210,9 @@ body {
 .link[aria-current] {
   font-weight: 700;
 }
+.pad {
+  padding: 10px;
+}
 .wip {
   text-align: center;
   max-width: 600px;
