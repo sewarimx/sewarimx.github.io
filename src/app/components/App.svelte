@@ -74,7 +74,7 @@
 
 {#if done}
   <div class="fixed overlay">
-    <div class="nosl">
+    <div class="nosl pad">
       <h2 class="biggest">MUCHAS GRACIAS</h2>
       <p>Tu pedido ha sido recibido, nos comunicaremos contigo a la brevedad.</p>
       <button class="solid-shadow" on:click={close}>CERRAR</button>
