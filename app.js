@@ -1211,7 +1211,7 @@
 				button.type = "submit";
 				button.disabled = button_disabled_value = !ctx.$cart.items.length;
 				form.method = "post";
-				form.action = form_action_value = "https://formspree.io/" + FORMSPREE_API_CODE;
+				form.action = form_action_value = "https://formspree.io/" + API_CODE;
 				div.className = "md-flex";
 				dispose = listen(form, "submit", prevent_default(ctx.submit_handler));
 			},
@@ -1361,7 +1361,7 @@
 		};
 	}
 
-	var FORMSPREE_API_CODE="meqrbnee";
+	var API_CODE="meqrbnee";
 
 	function func(sum, x) {
 		return sum + x.total;
