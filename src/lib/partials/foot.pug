@@ -1,0 +1,24 @@
+if process.env.NODE_ENV === 'production'
+  script(async src=`https://www.googletagmanager.com/gtag/js?id=${UA_TOKEN}`)
+  script.
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '#{UA_TOKEN}');
+
+script.
+  const topMenu = document.querySelector('#menu');
+
+  setTimeout(() => {
+    topMenu.classList.remove('hide');
+  }, 260);
+
+noscript
+  style #menu.hide { top: 0; }
+
+includeTag(src='main.js')
+
+block scripts
+
+footer.nosl
+  p Copyright &copy; #{new Date().getFullYear()} Sewari.mx

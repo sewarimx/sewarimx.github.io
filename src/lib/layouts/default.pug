@@ -51,19 +51,4 @@ html.no-js(lang='en')
 
     block body
 
-    script.
-      const topMenu = document.querySelector('#menu');
-
-      setTimeout(() => {
-        topMenu.classList.remove('hide');
-      }, 260);
-
-    noscript
-      style #menu.hide { top: 0; }
-
-    includeTag(src='main.js')
-
-    block scripts
-
-    footer.nosl
-      p Copyright &copy; #{new Date().getFullYear()} Sewari.mx
+    include ../partials/foot

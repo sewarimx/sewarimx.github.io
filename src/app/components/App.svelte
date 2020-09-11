@@ -6,7 +6,7 @@
 
   const products = window.products$ || {};
 
-  /* global FORMSPREE_API_CODE */
+  /* global API_CODE */
 
   let done = false;
 
@@ -115,7 +115,7 @@
   <aside>
     <h2 class="nosl bigger">CONTACT INFO.</h2>
     <p class="nosl">Platícanos más sobre ti, después de recibir tu pedido nos comunicaremos contigo para confirmar y agendar la entrega/pago.</p>
-    <form on:submit|preventDefault={e => send(e, fixedCart)} method="post" action="https://formspree.io/{FORMSPREE_API_CODE}">
+    <form on:submit|preventDefault={e => send(e, fixedCart)} method="post" action="https://formspree.io/{API_CODE}">
       <label class="nosl">
         <span>Tu nombre:</span>
         <In required name="fullname" type="text" msg="Por favor escribe tu nombre" />
