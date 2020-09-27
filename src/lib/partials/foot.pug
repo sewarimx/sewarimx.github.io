@@ -1,4 +1,4 @@
-if process.env.NODE_ENV === 'production'
+if env.NODE_ENV === 'production'
   script(async src=`https://www.googletagmanager.com/gtag/js?id=${UA_TOKEN}`)
   script.
     window.dataLayer = window.dataLayer || [];
