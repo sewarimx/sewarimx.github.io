@@ -40,7 +40,7 @@ block head
   if title
     title= title
 
-if UA_TOKEN && env.NODE_ENV === 'production'
+if UA_TOKEN && NODE_ENV === 'production'
   script.
     /* eslint-disable */
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
