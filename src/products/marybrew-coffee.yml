@@ -1,9 +1,12 @@
 product:
   prices:
-    - label: 1pza 125ml
-      value: 80
+    #- label: 1pza 125ml
+    #  value: 80
+    #  required: 12
+    # FIXME: make app consider this as constraint to allow purchase
     - label: 1pza 250ml
       value: 150
+      required: 6
     - label: 1pza 1000ml
       value: 490
     - label: 1pza 4000ml
