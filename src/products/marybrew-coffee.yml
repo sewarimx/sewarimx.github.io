@@ -1,7 +1,12 @@
 product:
   prices:
+    #- label: 1pza 125ml
+    #  value: 80
+    #  required: 12
+    # FIXME: make app consider this as constraint to allow purchase
     - label: 1pza 250ml
       value: 150
+      required: 6
     - label: 1pza 1000ml
       value: 490
     - label: 1pza 4000ml
@@ -13,25 +18,27 @@ product:
 slides:
   - images/coldbrew_bottle.jpg
   - images/coldbrew_display.jpg
-  - images/coldbrew_serving.jpg
 
 social:
   url: https://instagram.com/marnegro.cafe
   icon: instagram
-  display: '@marnegro.cafe'
+  display: "@marnegro.cafe"
 
 label: MAR NEGRO CAFÉ X SEWARI
 profile: Oaxaca sierra mixe
 quantity: 3360 msnm
 
 description: |
-  Proceso despulpado productores familia Martínez.<br />
-  «notas de vainilla, cacao semi amargos, acidez tántrica, caramelos, maple»
+  - Metodo por inmersión 
+  - 22 horas en frio 
+  - Proceso despulpado
+  - Productores familia Martínez.
+  - «notas de vainilla, cacao semi amargos, acidez tartarica, caramelos, maple, retrogusto largo y dulce»
 
 our_suggestion: |
   <b>¿Por que tomar café con cbd?</b>
-  La cafeína y el cannabidiol (cbd) trabajan en sinergia, aumentando tu energía y
-  concentración contrarrestando los efectos no deseados de la cafeína como la ansiedad,
-  taquicardia y temblores.
+  La cafeína y el cannabidiol (cbd) trabajan en sinergia, aumentando tus niveles de energía y
+  concentración contrarrestando los efectos no deseados de la cafeína como; la ansiedad,
+  taquicardia, temblores y transtornos del sueño.
 
 additional_info: Infusionado con cbd puro. 0% thc / 99.59% cbd
