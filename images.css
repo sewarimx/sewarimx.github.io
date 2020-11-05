@@ -24,6 +24,18 @@ i[class^="x-"], i[class*=" x-"] {
   width: 960px; height: 420px;
   background-image: url(images/outdoor_white_cup_bottom.jpg);
 }
+.x-marybrew-slide-3 {
+  width: 960px; height: 420px;
+  background-image: url(images/marybrew-slide-3.jpeg);
+}
+.x-marybrew-slide-2 {
+  width: 960px; height: 420px;
+  background-image: url(images/marybrew-slide-2.jpeg);
+}
+.x-marybrew-slide-1 {
+  width: 960px; height: 420px;
+  background-image: url(images/marybrew-slide-1.jpeg);
+}
 .x-coldbrew_three_bottles {
   width: 800px; height: 400px;
   background-image: url(images/coldbrew_three_bottles.jpg);

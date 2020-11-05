@@ -135,6 +135,10 @@
 		render_callbacks.push(fn);
 	}
 
+	function add_flush_callback(fn) {
+		flush_callbacks.push(fn);
+	}
+
 	function flush() {
 		const seen_callbacks = new Set();
 
@@ -179,6 +183,12 @@
 
 			$$.after_render.forEach(add_render_callback);
 		}
+	}
+
+	function bind(component, name, callback) {
+		if (component.$$.props.indexOf(name) === -1) return;
+		component.$$.bound[name] = callback;
+		callback(component.$$.ctx[name]);
 	}
 
 	function mount_component(component, target, anchor) {
@@ -372,21 +382,22 @@
 	}
 
 	function create_fragment(ctx) {
-		var span, button0, t1, input, t2, button1, dispose;
+		var span, button0, t0, button0_disabled_value, t1, input, t2, button1, dispose;
 
 		return {
 			c() {
 				span = element("span");
 				button0 = element("button");
-				button0.textContent = "-";
+				t0 = text("-");
 				t1 = space();
 				input = element("input");
 				t2 = space();
 				button1 = element("button");
 				button1.textContent = "+";
+				button0.disabled = button0_disabled_value =  ctx.value === ctx.minimum;
 				button0.className = "nosl svelte-d6l8pb";
 				attr(input, "type", "number");
-				input.min = "1";
+				input.min = ctx.minimum;
 				input.className = "svelte-d6l8pb";
 				button1.className = "nosl svelte-d6l8pb";
 				span.className = "svelte-d6l8pb";
@@ -402,6 +413,7 @@
 			m(target, anchor) {
 				insert(target, span, anchor);
 				append(span, button0);
+				append(button0, t0);
 				append(span, t1);
 				append(span, input);
 
@@ -413,10 +425,18 @@
 			},
 
 			p(changed, ctx) {
+				if ((changed.value || changed.minimum) && button0_disabled_value !== (button0_disabled_value =  ctx.value === ctx.minimum)) {
+					button0.disabled = button0_disabled_value;
+				}
+
 				if (changed.value) input.value = ctx.value;
 				if (changed.items) {
 					ctx.input_binding(null, input);
 					ctx.input_binding(input, null);
+				}
+
+				if (changed.minimum) {
+					input.min = ctx.minimum;
 				}
 			},
 
@@ -435,10 +455,9 @@
 	}
 
 	function instance($$self, $$props, $$invalidate) {
-		let { value = 0 } = $$props;
+		let { minimum = 1, value = 0 } = $$props;
 
 	  const dispatch = createEventDispatcher();
-
 	  let ref;
 
 	  function sync() {
@@ -451,14 +470,13 @@
 	  }
 
 	  function dec() {
-	    if (ref.value <= ref.getAttribute('min')) return;
 	    ref.value = parseFloat(ref.value) - 1; $$invalidate('ref', ref);
 	    sync();
 	  }
 
 		function input_input_handler() {
 			value = to_number(this.value);
-			$$invalidate('value', value);
+			$$invalidate('value', value), $$invalidate('minimum', minimum), $$invalidate('ref', ref);
 		}
 
 		function input_binding($$node, check) {
@@ -467,10 +485,18 @@
 		}
 
 		$$self.$set = $$props => {
+			if ('minimum' in $$props) $$invalidate('minimum', minimum = $$props.minimum);
 			if ('value' in $$props) $$invalidate('value', value = $$props.value);
 		};
 
+		$$self.$$.update = ($$dirty = { value: 1, minimum: 1, ref: 1 }) => {
+			if ($$dirty.value || $$dirty.minimum || $$dirty.ref) { if (value !== minimum) {
+	        $$invalidate('value', value = Math.max(parseFloat(ref.value), minimum));
+	      } }
+		};
+
 		return {
+			minimum,
 			value,
 			ref,
 			sync,
@@ -485,7 +511,7 @@
 		constructor(options) {
 			super();
 			if (!document.getElementById("svelte-d6l8pb-style")) add_css();
-			init(this, options, instance, create_fragment, safe_not_equal, ["value"]);
+			init(this, options, instance, create_fragment, safe_not_equal, ["minimum", "value"]);
 		}
 	}
 
@@ -497,7 +523,7 @@
 		return child_ctx;
 	}
 
-	// (45:8) {#if count > 1}
+	// (50:8) {#if count > 1}
 	function create_if_block(ctx) {
 		var small, t0, t1, t2, t3_value = formatMoney(ctx.price.value * ctx.count), t3, t4;
 
@@ -538,9 +564,9 @@
 		};
 	}
 
-	// (40:2) {#each product.prices as price}
+	// (45:2) {#each product.prices as price}
 	function create_each_block(ctx) {
-		var li, label, input, input_value_value, t0, t1_value = ctx.price.label, t1, t2, t3_value = formatMoney(ctx.price.value), t3, t4, dispose;
+		var li, label, input, input_value_value, t0, t1_value = ctx.price.label, t1, t2_value = ctx.price.required ? `* ${ctx.price.required}pz` : '', t2, t3, t4_value = formatMoney(ctx.price.value), t4, t5, t6_value = ctx.price.required ? '/cu' : '', t6, t7, dispose;
 
 		var if_block = (ctx.count > 1) && create_if_block(ctx);
 
@@ -551,9 +577,12 @@
 				input = element("input");
 				t0 = space();
 				t1 = text(t1_value);
-				t2 = text(" — $");
-				t3 = text(t3_value);
-				t4 = text(" MXN\n        ");
+				t2 = text(t2_value);
+				t3 = text(" — $");
+				t4 = text(t4_value);
+				t5 = text(" MXN ");
+				t6 = text(t6_value);
+				t7 = space();
 				if (if_block) if_block.c();
 				ctx.$$binding_groups[0].push(input);
 				attr(input, "type", "radio");
@@ -579,6 +608,9 @@
 				append(label, t2);
 				append(label, t3);
 				append(label, t4);
+				append(label, t5);
+				append(label, t6);
+				append(label, t7);
 				if (if_block) if_block.m(label, null);
 			},
 
@@ -613,7 +645,7 @@
 	}
 
 	function create_fragment$1(ctx) {
-		var h3, t1, ul, t2, div, t3, button, t4, button_disabled_value, current, dispose;
+		var h3, t1, ul, t2, div, updating_value, t3, button, t4, button_disabled_value, current, dispose;
 
 		var each_value = ctx.product.prices;
 
@@ -623,7 +655,19 @@
 			each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
 		}
 
-		var num = new Number({ props: { value: ctx.count } });
+		function num_value_binding(value) {
+			ctx.num_value_binding.call(null, value);
+			updating_value = true;
+			add_flush_callback(() => updating_value = false);
+		}
+
+		let num_props = { minimum: (ctx.selected && ctx.selected.required) || 1 };
+		if (ctx.count !== void 0) {
+			num_props.value = ctx.count;
+		}
+		var num = new Number({ props: num_props });
+
+		add_binding_callback(() => bind(num, 'value', num_value_binding));
 		num.$on("change", ctx.change_handler);
 
 		return {
@@ -644,7 +688,7 @@
 				button = element("button");
 				t4 = text("COMPRAR");
 				ul.className = "reset";
-				button.disabled = button_disabled_value = !ctx.selected;
+				button.disabled = button_disabled_value = !ctx.selected || !ctx.isValid;
 				button.className = "nosl solid-shadow";
 				div.className = "flex space";
 				dispose = listen(button, "click", ctx.add);
@@ -691,10 +735,13 @@
 				}
 
 				var num_changes = {};
-				if (changed.count) num_changes.value = ctx.count;
+				if (changed.selected) num_changes.minimum = (ctx.selected && ctx.selected.required) || 1;
+				if (!updating_value && changed.count) {
+					num_changes.value = ctx.count;
+				}
 				num.$set(num_changes);
 
-				if ((!current || changed.selected) && button_disabled_value !== (button_disabled_value = !ctx.selected)) {
+				if ((!current || changed.selected || changed.isValid) && button_disabled_value !== (button_disabled_value = !ctx.selected || !ctx.isValid)) {
 					button.disabled = button_disabled_value;
 				}
 			},
@@ -743,6 +790,7 @@
 
 	  const product = window.product$ || {};
 
+	  let isValid = true;
 	  let active = [];
 
 	  function sync() {
@@ -776,6 +824,11 @@
 			$$invalidate('active', active);
 		}
 
+		function num_value_binding(value) {
+			count = value;
+			$$invalidate('count', count);
+		}
+
 		function change_handler(e) { count = parseFloat(e.detail.value); $$invalidate('count', count); }
 
 		$$self.$set = $$props => {
@@ -783,14 +836,22 @@
 			if ('selected' in $$props) $$invalidate('selected', selected = $$props.selected);
 		};
 
+		$$self.$$.update = ($$dirty = { selected: 1, count: 1 }) => {
+			if ($$dirty.selected || $$dirty.count) { if (selected) {
+	        $$invalidate('isValid', isValid = !selected.required || count >= selected.required);
+	      } }
+		};
+
 		return {
 			count,
 			selected,
 			product,
+			isValid,
 			active,
 			set,
 			add,
 			input_change_handler,
+			num_value_binding,
 			change_handler,
 			$$binding_groups
 		};

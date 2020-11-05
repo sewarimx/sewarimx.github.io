@@ -557,21 +557,22 @@
 	}
 
 	function create_fragment(ctx) {
-		var span, button0, t1, input, t2, button1, dispose;
+		var span, button0, t0, button0_disabled_value, t1, input, t2, button1, dispose;
 
 		return {
 			c() {
 				span = element("span");
 				button0 = element("button");
-				button0.textContent = "-";
+				t0 = text("-");
 				t1 = space();
 				input = element("input");
 				t2 = space();
 				button1 = element("button");
 				button1.textContent = "+";
+				button0.disabled = button0_disabled_value =  ctx.value === ctx.minimum;
 				button0.className = "nosl svelte-d6l8pb";
 				attr(input, "type", "number");
-				input.min = "1";
+				input.min = ctx.minimum;
 				input.className = "svelte-d6l8pb";
 				button1.className = "nosl svelte-d6l8pb";
 				span.className = "svelte-d6l8pb";
@@ -587,6 +588,7 @@
 			m(target, anchor) {
 				insert(target, span, anchor);
 				append(span, button0);
+				append(button0, t0);
 				append(span, t1);
 				append(span, input);
 
@@ -598,10 +600,18 @@
 			},
 
 			p(changed, ctx) {
+				if ((changed.value || changed.minimum) && button0_disabled_value !== (button0_disabled_value =  ctx.value === ctx.minimum)) {
+					button0.disabled = button0_disabled_value;
+				}
+
 				if (changed.value) input.value = ctx.value;
 				if (changed.items) {
 					ctx.input_binding(null, input);
 					ctx.input_binding(input, null);
+				}
+
+				if (changed.minimum) {
+					input.min = ctx.minimum;
 				}
 			},
 
@@ -620,10 +630,9 @@
 	}
 
 	function instance($$self, $$props, $$invalidate) {
-		let { value = 0 } = $$props;
+		let { minimum = 1, value = 0 } = $$props;
 
 	  const dispatch = createEventDispatcher();
-
 	  let ref;
 
 	  function sync() {
@@ -636,14 +645,13 @@
 	  }
 
 	  function dec() {
-	    if (ref.value <= ref.getAttribute('min')) return;
 	    ref.value = parseFloat(ref.value) - 1; $$invalidate('ref', ref);
 	    sync();
 	  }
 
 		function input_input_handler() {
 			value = to_number(this.value);
-			$$invalidate('value', value);
+			$$invalidate('value', value), $$invalidate('minimum', minimum), $$invalidate('ref', ref);
 		}
 
 		function input_binding($$node, check) {
@@ -652,10 +660,18 @@
 		}
 
 		$$self.$set = $$props => {
+			if ('minimum' in $$props) $$invalidate('minimum', minimum = $$props.minimum);
 			if ('value' in $$props) $$invalidate('value', value = $$props.value);
 		};
 
+		$$self.$$.update = ($$dirty = { value: 1, minimum: 1, ref: 1 }) => {
+			if ($$dirty.value || $$dirty.minimum || $$dirty.ref) { if (value !== minimum) {
+	        $$invalidate('value', value = Math.max(parseFloat(ref.value), minimum));
+	      } }
+		};
+
 		return {
+			minimum,
 			value,
 			ref,
 			sync,
@@ -670,7 +686,7 @@
 		constructor(options) {
 			super();
 			if (!document.getElementById("svelte-d6l8pb-style")) add_css();
-			init(this, options, instance, create_fragment, safe_not_equal, ["value"]);
+			init(this, options, instance, create_fragment, safe_not_equal, ["minimum", "value"]);
 		}
 	}
 

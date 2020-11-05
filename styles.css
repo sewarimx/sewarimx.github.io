@@ -52,6 +52,9 @@
   background: none 50% no-repeat;
   background-size: cover;
 }
+.slideshow .slider > * > i {
+  max-width: 100%;
+}
 .slideshow .arrows {
   position: absolute;
   z-index: 1;
