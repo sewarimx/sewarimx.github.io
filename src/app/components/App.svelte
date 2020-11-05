@@ -88,7 +88,7 @@
     {#each fixedCart as item (item.id)}
       <li class="flex">
         <div class="overlay">
-          <Num value={item.qty} on:change={e => set(e, item)} />
+          <Num value={item.qty} minimum={item.required} on:change={e => set(e, item)} />
           <button class="nosl solid-shadow" on:click={() => rm(item)}>Eliminar</button>
         </div>
         <figure>

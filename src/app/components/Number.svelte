@@ -23,7 +23,7 @@
     sync();
   }
 
-  $: if (value !== minimum) {
+  $: if (ref && value !== minimum) {
     value = Math.max(parseFloat(ref.value), minimum);
   }
 </script>
