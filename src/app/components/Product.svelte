@@ -8,6 +8,7 @@
 
   const product = window.product$ || {};
 
+  let isValid = true;
   let active = [];
 
   function sync() {
@@ -33,6 +34,10 @@
     count = 1;
     sync();
   }
+
+  $: if (selected) {
+    isValid = !selected.required || count >= selected.required;
+  }
 </script>
 
 <h3>Presentación</h3>
@@ -41,7 +46,7 @@
     <li>
       <label>
         <input type="radio" name="price" on:change={set} bind:group={active} value={price.label} />
-        {price.label} &mdash; ${formatMoney(price.value)} MXN
+        {price.label}{price.required ? `* ${price.required}pz` : ''} &mdash; ${formatMoney(price.value)} MXN {price.required ? '/cu' : ''}
         {#if count > 1}
           <small>&times;{count} &rarr; ${formatMoney(price.value * count)} MXN</small>
         {/if}
@@ -51,6 +56,6 @@
 </ul>
 
 <div class="flex space">
-  <Num value={count} on:change={e => { count = parseFloat(e.detail.value) }} />
-  <button disabled={!selected} on:click={add} class="nosl solid-shadow">COMPRAR</button>
+  <Num bind:value={count} minimum={(selected && selected.required) || 1} on:change={e => { count = parseFloat(e.detail.value) }} />
+  <button disabled={!selected || !isValid} on:click={add} class="nosl solid-shadow">COMPRAR</button>
 </div>

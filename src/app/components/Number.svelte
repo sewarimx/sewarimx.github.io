@@ -1,10 +1,12 @@
 <script>
   import { createEventDispatcher } from 'svelte';
 
+  export let minimum = 1;
   export let value = 0;
 
   const dispatch = createEventDispatcher();
 
+  let disabled = false;
   let ref;
 
   function sync() {
@@ -17,9 +19,12 @@
   }
 
   function dec() {
-    if (ref.value <= ref.getAttribute('min')) return;
     ref.value = parseFloat(ref.value) - 1;
     sync();
+  }
+
+  $: if (value !== minimum) {
+    value = Math.max(parseFloat(ref.value), minimum);
   }
 </script>
 
@@ -42,7 +47,7 @@
 </style>
 
 <span>
-  <button class="nosl" on:click={dec}>-</button>
-  <input type="number" min="1" bind:this={ref} bind:value on:change={sync} />
+  <button disabled={disabled || value === minimum} class="nosl" on:click={dec}>-</button>
+  <input type="number" min={minimum} bind:this={ref} bind:value on:change={sync} />
   <button class="nosl" on:click={inc}>+</button>
 </span>

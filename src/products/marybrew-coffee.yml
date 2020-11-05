@@ -1,9 +1,8 @@
 product:
   prices:
-    #- label: 1pza 125ml
-    #  value: 80
-    #  required: 12
-    # FIXME: make app consider this as constraint to allow purchase
+    - label: 1pza 125ml
+      value: 80
+      required: 12
     - label: 1pza 250ml
       value: 150
       required: 6
@@ -29,8 +28,8 @@ profile: Oaxaca sierra mixe
 quantity: 3360 msnm
 
 description: |
-  - Metodo por inmersión 
-  - 22 horas en frio 
+  - Metodo por inmersión
+  - 22 horas en frio
   - Proceso despulpado
   - Productores familia Martínez.
   - «notas de vainilla, cacao semi amargos, acidez tartarica, caramelos, maple, retrogusto largo y dulce»
