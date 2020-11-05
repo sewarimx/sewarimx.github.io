@@ -1,7 +1,7 @@
 {
-  "name": "plate",
-  "version": "0.0.0",
-  "description": "Old boilerplate for web-pages!",
+  "name": "sewari.mx",
+  "version": "0.1.0",
+  "description": "All about that hemp.",
   "main": "build/main.js",
   "license": "MIT",
   "private": true,
