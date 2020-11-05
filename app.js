@@ -651,7 +651,7 @@
 
 		function input_input_handler() {
 			value = to_number(this.value);
-			$$invalidate('value', value), $$invalidate('minimum', minimum), $$invalidate('ref', ref);
+			$$invalidate('value', value), $$invalidate('ref', ref), $$invalidate('minimum', minimum);
 		}
 
 		function input_binding($$node, check) {
@@ -664,8 +664,8 @@
 			if ('value' in $$props) $$invalidate('value', value = $$props.value);
 		};
 
-		$$self.$$.update = ($$dirty = { value: 1, minimum: 1, ref: 1 }) => {
-			if ($$dirty.value || $$dirty.minimum || $$dirty.ref) { if (value !== minimum) {
+		$$self.$$.update = ($$dirty = { ref: 1, value: 1, minimum: 1 }) => {
+			if ($$dirty.ref || $$dirty.value || $$dirty.minimum) { if (ref && value !== minimum) {
 	        $$invalidate('value', value = Math.max(parseFloat(ref.value), minimum));
 	      } }
 		};
@@ -971,7 +971,12 @@
 			return ctx.change_handler(ctx, ...args);
 		}
 
-		var num = new Number({ props: { value: ctx.item.qty } });
+		var num = new Number({
+			props: {
+			value: ctx.item.qty,
+			minimum: ctx.item.required
+		}
+		});
 		num.$on("change", change_handler);
 
 		function click_handler() {
@@ -1048,6 +1053,7 @@
 				ctx = new_ctx;
 				var num_changes = {};
 				if (changed.fixedCart) num_changes.value = ctx.item.qty;
+				if (changed.fixedCart) num_changes.minimum = ctx.item.required;
 				num.$set(num_changes);
 
 				if ((!current || changed.fixedCart) && img_alt_value !== (img_alt_value = ctx.item.name)) {
