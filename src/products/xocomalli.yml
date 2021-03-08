@@ -1,0 +1,37 @@
+product:
+  prices:
+    - label: 1pza 80g - 50mg
+      value: 140
+      required: 1
+    - label: 1pza 250g - 320mg
+      value: 150
+      required: 1
+  image: https://cdn.glitch.com/7d80233b-8023-49f1-b823-df8e0ac8c44b%2Fxocomalli.jpeg
+  name: CBD chocolate
+  key: xocomalli-cbd-chocolate
+
+slides:
+  - https://cdn.glitch.com/7d80233b-8023-49f1-b823-df8e0ac8c44b%2Fxocomalli.jpeg
+  - https://cdn.glitch.com/7d80233b-8023-49f1-b823-df8e0ac8c44b%2FChocolate%20con%20cbd%20en%20bolsa.jpeg
+  - https://cdn.glitch.com/7d80233b-8023-49f1-b823-df8e0ac8c44b%2Fchocolate%20artesanal%20mexicano%20con%20cbd.jpeg
+  
+social:
+  url: https://instagram.com/sewari.mx
+  icon: instagram
+  display: "@sewari.mx"
+
+label: CHOCOLATE FELIU X SEWARI
+profile: Cacao criollo de Chiapas
+quantity: 75% cacao
+
+description: |
+  48 horas de refinado, tostado suave, textura cremosa con notas a nueces, frutos secos, pistache y miel. 
+
+our_suggestion: |
+  <b>¿Por que comer chocolate con cbd?</b><br>
+  
+   El chocolate es conocido comúnmente por ser elevador del estado de ánimo, antioxidante, estimulante y afrodisíaco ¿pero por qué nos gusta tanto? ⁣
+   La anandamida es un endocannabinoide encontrado en el cacao y el chocolate que nos genera paz debido a los efectos y la relajación que nos genera. ⁣
+   Es por eso que el cannabis y el chocolate hacen tan buen complemento para una rutina de vida más relajada. ⁣
+
+additional_info: Infusionado con cbd puro. 0% thc / 99.59% cbd
