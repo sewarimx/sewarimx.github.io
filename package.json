@@ -94,6 +94,7 @@
     "lodash": ">=4.17.19",
     "lodash.template": ">=4.5.0",
     "minimist": ">=1.2.2",
+    "node-notifier": ">=8.0.1",
     "pug": "^3.0.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
