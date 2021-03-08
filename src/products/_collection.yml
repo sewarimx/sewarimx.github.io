@@ -1,2 +1,3 @@
 items:
   - !include marybrew-coffee.yml
+  - !include xocomalli.yml
