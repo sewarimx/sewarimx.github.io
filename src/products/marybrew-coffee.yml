@@ -12,8 +12,8 @@ product:
       value: 990
   image: images/coldbrew_three_bottles.jpg
   name: MaryBrew coffee
-  key: marybrew-coffee
-
+  key: marybrew-cbd-cafe-cold-brew
+  
 slides:
   - images/coldbrew_bottle.jpg
   - images/coldbrew_display.jpg
