@@ -93,7 +93,7 @@
     "less-plugin-autoprefix": "^2.0.0",
     "lodash": ">=4.17.21",
     "lodash.template": ">=4.5.0",
-    "minimist": ">=1.2.2",
+    "minimist": ">=1.2.6",
     "node-notifier": ">=8.0.1",
     "pug": "^3.0.1",
     "rollup-plugin-commonjs": "^10.1.0",
