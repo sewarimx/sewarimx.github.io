@@ -116,18 +116,22 @@
     <h2 class="nosl bigger">CONTACT INFO.</h2>
     <p class="nosl">Platícanos más sobre ti, después de recibir tu pedido nos comunicaremos contigo para confirmar y agendar la entrega/pago.</p>
     <form on:submit|preventDefault={e => send(e, fixedCart)} method="post" action="https://formspree.io/{API_CODE}">
+      <!-- svelte-ignore a11y-label-has-associated-control -->
       <label class="nosl">
         <span>Tu nombre:</span>
         <In required name="fullname" type="text" msg="Por favor escribe tu nombre" />
       </label>
+      <!-- svelte-ignore a11y-label-has-associated-control -->
       <label class="nosl">
         <span>Correo electrónico:</span>
         <In required name="emailaddr" type="email" msg="Por favor escribe tu correo" />
       </label>
+      <!-- svelte-ignore a11y-label-has-associated-control -->
       <label class="nosl">
         <span>Número telefónico:</span>
         <In required name="phonenum" type="text" msg="Por favor escribe tu número" />
       </label>
+      <!-- svelte-ignore a11y-label-has-associated-control -->
       <label class="nosl">
         <span>Dirección de entrega:</span>
         <In required name="fulladdr" type="textarea" rows="6" msg="Por favor escribe tu dirección" />
